@@ -1,0 +1,65 @@
+/* Final typography layer: Vietnamese accents and italic descenders need room. */
+:root{--story-accent:#ad5962;--story-surface:#e5ece5;--story-ink:#24453a;--story-line:#a6bbb0}
+.theme-editorial{--story-accent:#ae3933;--story-surface:#dedbd2;--story-ink:#252a26;--story-line:#aaa99f}
+.theme-lacquer{--story-accent:#e6c28c;--story-surface:#561013;--story-ink:#f3e5d4;--story-line:#915b48}
+.theme-chrome{--story-accent:#38522b;--story-surface:#dfe3e1;--story-ink:#18251f;--story-line:#98a49e}
+.theme-film{--story-accent:#d89153;--story-surface:#211d19;--story-ink:#ece5d7;--story-line:#655346}
+.theme-silk{--story-accent:#9c4b50;--story-surface:#e4ede5;--story-ink:#25483d;--story-line:#a3b8ad}
+html{overflow-x:clip}body{min-width:280px}body:not(.motion-ready){overflow:auto}
+body h1,body h2,body h3,body blockquote{line-height:1.18;letter-spacing:-.025em;text-wrap:balance;overflow-wrap:break-word}
+body h2 i,body blockquote i{line-height:1.25}
+body .couple-title{display:flex;flex-direction:column;gap:.14em;line-height:1.2;letter-spacing:-.035em;font-size:clamp(2rem,6vw,5.7rem);margin:1.25rem 0;max-width:100%;min-width:0}
+body .couple-title .couple-name{display:block;line-height:1.22;white-space:nowrap;padding:0!important;text-align:inherit}
+body .couple-title .couple-connector{display:block;position:static;margin:.1em 0;padding:.15em 0;font-size:.4em;line-height:1.5;letter-spacing:0;font-weight:400;text-transform:none}
+body .hero__content{grid-column:1/-1;max-width:100%;width:100%}
+body.theme-garden .hero__content{justify-content:flex-end;gap:1.5rem}
+body.theme-chrome .hero__main{grid-template-columns:minmax(0,1fr) auto}
+body.theme-chrome .hero__date{opacity:1;transform:none}
+body .hero__copy,body .story__copy,body .event>div{min-width:0}
+body .gate__content h1{font-size:clamp(2rem,6.7vw,5.5rem);line-height:1.2}
+body .invitation-gate{overflow-y:auto;padding:2.5rem 1rem}
+body .gate__content{width:min(760px,100%);margin:auto}
+body .gate__monogram{margin-bottom:1rem}
+body .gate__open{margin-top:1.25rem}
+body .gate__label,body .gate__date{line-height:1.8}
+body .reveal{filter:none;clip-path:none;transform:none;opacity:1}
+.motion-ready .reveal{opacity:0;transform:translate3d(0,26px,0);transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--reveal-order,0)*90ms)}
+.motion-ready .reveal.is-visible{opacity:1;transform:none}
+body:not(.motion-ready) .hero h1,body:not(.motion-ready) .lead h1,body:not(.motion-ready) .hero__date,body:not(.motion-ready) .hero__meta,body:not(.motion-ready) .lead__bottom,body:not(.motion-ready) .hero__bottom,body:not(.motion-ready) .crest time{opacity:1;filter:none;transform:none}
+.story-chapter{height:150svh;position:relative;background:#14241e;color:#f4f1e8}
+.chapter-scene{position:sticky;top:0;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:7rem 8vw;isolation:isolate}
+.chapter-scene>img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;filter:brightness(.42);transform:scale(1.08)}
+.chapter-scene:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,23,17,.6),transparent)}
+.chapter-words{max-width:760px}.chapter-words h2{font:500 clamp(2.5rem,5vw,5rem)/1.2 'Newsreader',Georgia,serif;margin:1rem 0 1.75rem;letter-spacing:-.025em}
+.chapter-words>p:last-child{max-width:42ch;font-size:clamp(.95rem,1.5vw,1.1rem);line-height:1.9}
+.story-eyebrow{font:500 .65rem/1.8 'Be Vietnam Pro',sans-serif;letter-spacing:.17em;margin:0 0 1.5rem}
+.story-vows,.story-journey,.story-album,.story-finale{background:var(--story-surface);color:var(--story-ink);padding:clamp(5rem,9vw,9rem) max(1.3rem,6vw);min-width:0}
+.story-vows h2,.story-journey h2,.story-album h2,.story-finale h2{font:500 clamp(2.5rem,4.5vw,4.6rem)/1.2 'Newsreader',Georgia,serif;max-width:20ch;margin:0 0 1.5rem;letter-spacing:-.025em}
+.story-vows>header,.story-journey>header,.story-album>header{max-width:1200px;margin:0 auto 4rem}
+.vow-pair{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:8vw}
+.vow-pair article{position:relative;padding:3rem 0;border-top:1px solid var(--story-line)}
+.vow-initial{font:400 7rem/1.2 'Newsreader',serif;color:var(--story-accent);display:block;margin-bottom:1rem}
+.vow-pair h3{font:500 2.1rem/1.3 'Newsreader',serif;margin:.5rem 0 1rem}
+.vow-pair p,.journey-track p,.story-finale>p:not(.story-eyebrow){font:400 .94rem/1.9 'Be Vietnam Pro',sans-serif;max-width:44ch}
+.story-journey{padding-top:3rem}.journey-track{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3rem;border-top:1px solid var(--story-line)}
+.journey-track article{padding-top:2rem}.journey-track span{font-size:.8rem;color:var(--story-accent);font-variant-numeric:tabular-nums}
+.journey-track h3{font:500 1.8rem/1.3 'Newsreader',serif;margin:2rem 0 1rem}
+.story-album>header>p:last-child,.story-journey>header>p{font:.86rem/1.8 'Be Vietnam Pro',sans-serif;max-width:50ch}
+.album-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.15fr 1fr;gap:2rem}
+.album-photo{appearance:none;display:block;min-width:0;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:zoom-in;overflow:hidden}
+.album-photo:first-child{grid-row:span 2}.album-photo img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.album-photo:first-child img{aspect-ratio:3/4;height:calc(100% - 3rem)}
+.album-photo span{display:block;font:.7rem/1.7 'Be Vietnam Pro',sans-serif;padding:1rem 0}.album-photo:hover img{transform:scale(1.025)}
+.story-finale{text-align:center;min-height:80svh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.story-finale h2{max-width:16ch}.story-finale .rsvp-trigger{margin-top:2rem;background:var(--story-ink);color:var(--story-surface);border-radius:999px;padding:1rem 1.6rem;font:.8rem 'Be Vietnam Pro',sans-serif}
+.photo-dialog{width:min(1100px,94vw);max-height:94dvh;padding:3.5rem 1rem 1rem;border:0;background:#18231f;color:#f4f1e8;border-radius:12px}
+.photo-dialog::backdrop{background:rgba(8,17,12,.92)}.photo-dialog img{display:block;max-width:100%;width:auto;max-height:76dvh;margin:auto;object-fit:contain}
+.photo-close{position:absolute;right:1rem;top:.8rem;background:transparent;color:inherit;border:1px solid #7d8d84;border-radius:999px;padding:.5rem 1rem;cursor:pointer}
+.photo-dialog p{text-align:center;font:.8rem/1.5 'Be Vietnam Pro',sans-serif}
+body button:focus-visible,body a:focus-visible{outline:2px solid currentColor;outline-offset:5px}
+@supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.chapter-scene>img{animation:chapter-drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}.album-photo img{animation:album-arrive linear both;animation-timeline:view();animation-range:entry 0% entry 100%}}}
+@keyframes chapter-drift{from{transform:scale(1.13) translateY(-2%)}to{transform:scale(1.02) translateY(2%)}}
+@keyframes album-arrive{from{opacity:.65;transform:scale(1.045)}to{opacity:1;transform:scale(1)}}
+@media(max-width:768px){body .couple-title,body .gate__content h1{font-size:clamp(1.9rem,8.7vw,3.7rem);line-height:1.22;gap:.18em}body .hero__copy{padding:6rem 1.3rem 3rem}body .hero__content{padding:6rem 1.3rem 4rem}body .hero__main{gap:2rem}body.theme-chrome .hero__main{grid-template-columns:1fr}body .hero__date{max-width:100%;letter-spacing:.06em;font-size:.68rem}body .hero h2,body .event h2,body .details h2,body .ceremony h2,body .screening h2{font-size:clamp(2.2rem,9vw,3.8rem)}body .hero__meta{font-size:.64rem;line-height:1.9}body .crest{width:100%;padding:3rem 1rem;min-height:75svh}.vow-pair{gap:2rem;grid-template-columns:1fr}.vow-pair article{padding:2rem 0}.vow-initial{font-size:4.5rem}.journey-track{grid-template-columns:1fr;gap:1.5rem;border-top:0}.journey-track article{border-top:1px solid var(--story-line);padding-top:1.5rem}.journey-track h3{margin:1rem 0}.story-vows>header,.story-journey>header,.story-album>header{margin-bottom:2rem}.album-grid{grid-template-columns:1fr;gap:1.7rem}.album-photo:first-child{grid-row:auto}.album-photo:first-child img{height:auto;aspect-ratio:4/5}.chapter-scene{padding:6rem 1.3rem}.chapter-words h2{font-size:clamp(2.2rem,9vw,3.5rem)}.story-chapter{height:125svh}.story-finale{min-height:75svh}body .rsvp-trigger{white-space:normal;line-height:1.5;max-width:100%}}
+@media(max-height:650px){body .gate__monogram{width:40px;height:40px;margin-bottom:.5rem}body .gate__content h1{font-size:clamp(1.8rem,5vw,3rem);margin:.6rem 0}body .gate__label,body .gate__date{margin:.4rem 0}body .gate__open{margin-top:.6rem}}
+@media(prefers-reduced-motion:reduce){body .hero h1,body .lead h1,body .crest h1,body .hero__meta,body .hero__date,body .hero__bottom,body .lead__bottom,body .crest time,body .reveal{opacity:1!important;filter:none!important;transform:none!important;clip-path:none!important;animation:none!important}.story-chapter{height:auto}.chapter-scene{position:relative;min-height:80svh}.chapter-scene>img,.album-photo img{animation:none;transform:none}.celebration-layer{display:none}}

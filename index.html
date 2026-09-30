@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bộ sưu tập thiệp cưới dành riêng cho Thùy Trang và Quốc Hảo.">
+  <title>Thư viện thiệp cưới | Thùy Trang & Quốc Hảo</title>
+  <link rel="preload" href="assets/images/couple-garden.png" as="image">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Trang chủ thư viện thiệp">
+      <span class="brand__mark">T<span>&</span>H</span>
+      <span class="brand__text">Thư viện thiệp cưới</span>
+    </a>
+    <div class="topbar__actions">
+      <p>Dành cho <strong>Thùy Trang & Quốc Hảo</strong></p>
+      <button class="soft-button" id="toggleHelp" type="button" aria-expanded="false" aria-controls="helpPanel">Cách chọn mẫu</button>
+    </div>
+  </header>
+  <aside class="help-panel" id="helpPanel" aria-hidden="true">
+    <button class="help-panel__close" id="closeHelp" type="button" aria-label="Đóng hướng dẫn">Đóng</button>
+    <p class="kicker">HƯỚNG DẪN NHANH</p>
+    <h2>Chọn bằng cảm xúc đầu tiên.</h2>
+    <ol>
+      <li>Bấm vào một mẫu trong danh sách.</li>
+      <li>Xem toàn bộ thiệp ở khung bên phải.</li>
+      <li>Thả tim cho những mẫu chị Trang thích.</li>
+      <li>Mở trang riêng để xem đúng kích thước thật.</li>
+    </ol>
+  </aside>
+  <div class="help-backdrop" id="helpBackdrop"></div>
+  <main class="app-shell">
+    <section class="catalog" aria-labelledby="catalogTitle">
+      <div class="catalog__intro">
+        <p class="kicker">06 PHONG CÁCH RIÊNG</p>
+        <h1 id="catalogTitle">Một ngày trọng đại,<br>nhiều cách để kể.</h1>
+        <p>Mỗi mẫu là một file HTML hoàn chỉnh. Tên cô dâu chú rể đã được đặt sẵn để gia đình dễ hình dung.</p>
+      </div>
+      <div class="filters" aria-label="Lọc mẫu thiệp">
+        <button class="filter is-active" type="button" data-filter="all">Tất cả</button>
+        <button class="filter" type="button" data-filter="photo">Có ảnh</button>
+        <button class="filter" type="button" data-filter="minimal">Tối giản</button>
+        <button class="filter" type="button" data-filter="traditional">Truyền thống</button>
+        <button class="filter" type="button" data-filter="favorite">Đã thích</button>
+      </div>
+      <div class="template-list" id="templateList">
+        <article class="template-card is-selected" data-category="photo romantic" data-src="invitations/01-vuon-suong.html" data-title="Vườn Sương" data-number="01">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Vườn Sương"><span class="template-card__thumb thumb--garden"><span>Thùy Trang<br><i>&</i> Quốc Hảo</span></span><span class="template-card__body"><b>Vườn Sương</b><small>Ảnh cưới, dịu dàng, tự nhiên</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Vườn Sương vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+        <article class="template-card" data-category="minimal modern" data-src="invitations/02-to-bao.html" data-title="Tờ Báo Ngày Vui" data-number="02">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Tờ Báo Ngày Vui"><span class="template-card__thumb thumb--editorial"><span>THE<br>WEDDING<br>EDITION</span></span><span class="template-card__body"><b>Tờ Báo Ngày Vui</b><small>Biên tập, cá tính, nhiều khoảng thở</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Tờ Báo Ngày Vui vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+        <article class="template-card" data-category="traditional" data-src="invitations/03-son-mai.html" data-title="Sơn Mài" data-number="03">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Sơn Mài"><span class="template-card__thumb thumb--lacquer"><span>TRANG<br><i>&</i><br>HẢO</span></span><span class="template-card__body"><b>Sơn Mài</b><small>Đỏ son, trang trọng, nét Việt</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Sơn Mài vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+        <article class="template-card" data-category="minimal modern" data-src="invitations/04-chrome.html" data-title="Chrome" data-number="04">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Chrome"><span class="template-card__thumb thumb--chrome"><span>TQ<br><i>18.10</i><br>QH</span></span><span class="template-card__body"><b>Chrome</b><small>Hiện đại, lạnh, thời trang</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Chrome vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+        <article class="template-card" data-category="photo romantic" data-src="invitations/05-phim-cu.html" data-title="Cuộn Phim" data-number="05">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Cuộn Phim"><span class="template-card__thumb thumb--film"><span>CHUYỆN<br>CỦA<br>CHÚNG MÌNH</span></span><span class="template-card__body"><b>Cuộn Phim</b><small>Điện ảnh, thân mật, giàu kỷ niệm</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Cuộn Phim vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+        <article class="template-card" data-category="traditional minimal" data-src="invitations/06-lua-ngoc.html" data-title="Lụa Ngọc" data-number="06">
+          <button class="template-card__select" type="button" aria-label="Xem mẫu Lụa Ngọc"><span class="template-card__thumb thumb--silk"><span>THÙY TRANG<br><i>se duyên cùng</i><br>QUỐC HẢO</span></span><span class="template-card__body"><b>Lụa Ngọc</b><small>Xanh ngọc, thanh lịch, tinh tế</small></span></button>
+          <button class="favorite" type="button" aria-label="Thêm Lụa Ngọc vào mẫu yêu thích" aria-pressed="false">♡</button>
+        </article>
+      </div>
+      <div class="empty-state" id="emptyState" hidden><p>Chưa có mẫu nào trong nhóm này.</p><button type="button" id="showAll">Xem tất cả mẫu</button></div>
+    </section>
+    <section class="preview-panel" aria-labelledby="previewTitle">
+      <div class="preview-toolbar">
+        <div><span id="previewNumber">MẪU 01</span><h2 id="previewTitle">Vườn Sương</h2></div>
+        <div class="preview-toolbar__actions">
+          <div class="viewport-switch" aria-label="Kích thước xem trước"><button class="is-active" type="button" data-viewport="desktop">Rộng</button><button type="button" data-viewport="mobile">Điện thoại</button></div>
+          <a class="primary-button" id="openFull" href="invitations/01-vuon-suong.html" target="_blank" rel="noopener">Mở trang riêng</a>
+        </div>
+      </div>
+      <div class="preview-stage" id="previewStage">
+        <div class="preview-loading" id="previewLoading" aria-live="polite"><span></span><p>Đang mở thiệp...</p></div>
+        <iframe id="previewFrame" src="invitations/01-vuon-suong.html" title="Xem trước mẫu thiệp Vườn Sương"></iframe>
+      </div>
+      <p class="preview-note">Nội dung ngày giờ và địa điểm hiện là bản minh họa, có thể thay bằng thông tin thật sau khi chọn mẫu.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
