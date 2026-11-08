@@ -1,93 +1,117 @@
 <!doctype html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Bộ sưu tập thiệp cưới dành riêng cho Thùy Trang và Quốc Hảo.">
-  <title>Thư viện thiệp cưới | Thùy Trang & Quốc Hảo</title>
-  <link rel="preload" href="assets/images/couple-garden.png" as="image">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Trang chủ thư viện thiệp">
-      <span class="brand__mark">T<span>&</span>H</span>
-      <span class="brand__text">Thư viện thiệp cưới</span>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thiệp cưới Thùy Trang &amp; Quốc Hảo | Vườn Sương</title><meta name="description" content="Thiệp cưới Vườn Sương của Thùy Trang và Quốc Hảo. Xem bản đồ và đường đi đến nhà chú rể."><link rel="stylesheet" href="assets/invitation-shared.css"><style>
+:root{--green:#173b31;--paper:#edf0e9;--rose:#b85b62;--line:rgba(23,59,49,.18)}body{background:var(--paper);color:var(--green);font-family:'Be Vietnam Pro',sans-serif}.hero{min-height:100dvh;position:relative;color:#fff;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.hero__photo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,28,22,.72),rgba(8,28,22,.1)),url('assets/images/couple-garden.png') center 58%/cover;animation:breathe 14s ease-out both}.hero__content{position:relative;z-index:2;grid-column:1;padding:18vh 7vw 8vh;display:flex;flex-direction:column;justify-content:space-between}.eyebrow{font-size:.66rem;letter-spacing:.22em;font-weight:500}.hero h1{font:500 clamp(4.8rem,10vw,10rem)/.75 'Newsreader',serif;letter-spacing:-.055em;margin:2rem 0}.hero h1 span{display:block}.hero h1 i{color:#ef9898;font-weight:400}.hero__date{display:flex;align-items:center;gap:1rem;font-size:.74rem;letter-spacing:.13em}.hero__date:before{content:'';width:55px;height:1px;background:rgba(255,255,255,.7)}@keyframes breathe{from{transform:scale(1.05)}to{transform:scale(1)}}.story{padding:12rem 7vw;display:grid;grid-template-columns:.9fr 1.2fr;gap:9vw;align-items:center}.story__copy h2{font:500 clamp(3.3rem,6vw,6.8rem)/.92 'Newsreader',serif;letter-spacing:-.04em;margin:.4rem 0 2rem}.story__copy>p{max-width:48ch;line-height:1.8;color:#5d7169}.story img{width:100%;aspect-ratio:4/3;object-fit:cover}.promise{padding:5rem 7vw 12rem;display:grid;grid-template-columns:1.2fr .8fr;gap:3vw;align-items:end}.promise blockquote{font:500 clamp(2.8rem,5vw,6rem)/1 'Newsreader',serif;margin:0}.promise blockquote i{color:var(--rose)}.promise__detail{border-top:1px solid var(--line);padding-top:1.5rem;line-height:1.8;color:#5d7169}.invitation-footer{background:var(--green);color:var(--paper);border-top:1px solid rgba(255,255,255,.15)}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.hero__photo{background-position:58% center}.hero__content{grid-column:1;padding:18vh 1.3rem 8vh;background:linear-gradient(90deg,rgba(8,28,22,.55),transparent)}.hero h1{font-size:5rem}.story{padding:7rem 1.3rem;grid-template-columns:1fr}.story img{order:-1}.promise{padding:2rem 1.3rem 7rem;grid-template-columns:1fr;gap:3rem}}
+
+.hero__date a {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: .35em;
+}
+.venue {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  padding: clamp(4rem, 9vw, 9rem) 7vw;
+  background: var(--green);
+  color: var(--paper);
+}
+.venue .eyebrow { color: #f5a5a6; }
+.venue h2 {
+  margin: .65rem 0 1rem;
+  font: 500 clamp(3rem, 5.5vw, 6rem)/1.1 'Newsreader', Georgia, serif;
+}
+.venue__copy > p:not(.eyebrow) {
+  max-width: 38ch;
+  margin: 0;
+  line-height: 1.75;
+}
+.venue__directions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  min-height: 48px;
+  margin-top: 1.5rem;
+  padding: .85rem 1.25rem;
+  border-radius: 999px;
+  background: #f5a5a6;
+  color: #311a1c;
+  font-size: .8rem;
+  font-weight: 600;
+  text-align: center;
+}
+.venue__directions:hover { background: #ffc3c1; }
+.venue__map {
+  display: block;
+  width: 100%;
+  height: clamp(16rem, 34vw, 25rem);
+  border: 1px solid rgba(237, 240, 233, .35);
+  border-radius: 1.25rem;
+  background: var(--paper);
+}
+@media (max-width: 720px) {
+  .venue {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 1.3rem;
+  }
+}
+</style><link rel="stylesheet" href="assets/storytelling.css">
+<noscript><style>.invitation-gate { display: none; }</style></noscript>
+</head><body class="theme-garden" data-particles="true">
+<div class="invitation-gate" role="dialog" aria-label="Mở thiệp cưới"><div class="gate__content"><span class="gate__monogram">T&H</span><p class="gate__label">TRÂN TRỌNG KÍNH MỜI</p><h1 class="couple-title"><span class="couple-name">Thùy Trang</span><i class="couple-connector">&</i><span class="couple-name">Quốc Hảo</span></h1><p class="gate__date">THIỆP CƯỚI · VƯỜN SƯƠNG</p><button class="gate__open" type="button" data-open-invitation>Mở thiệp</button></div></div>
+<main><section class="hero"><div class="hero__photo"></div><div class="hero__content"><p class="eyebrow">TRÂN TRỌNG BÁO HỶ</p><h1 class="couple-title"><span class="couple-name">Thùy Trang</span><i class="couple-connector">&</i><span class="couple-name">Quốc Hảo</span></h1><div class="hero__date"><a href="#nha-chu-re">Đường đến nhà chú rể <span aria-hidden="true">↓</span></a></div></div></section>
+<section class="story"><div class="story__copy reveal"><p class="eyebrow">CHUYỆN CỦA CHÚNG MÌNH</p><h2>Từ hôm nay,<br>mình gọi nhau là nhà.</h2><p>Sau những ngày cùng nhau đi qua bình thường và rực rỡ, chúng mình chọn một ngày đẹp để bắt đầu chương mới.</p></div><img class="reveal" src="assets/images/holding-hands.png" alt="Cô dâu và chú rể nắm tay nhau"></section>
+<section class="promise"><blockquote class="reveal">“Có những cuộc gặp gỡ khiến mọi ngày sau đó đều trở nên <i>đáng nhớ.</i>”</blockquote><div class="promise__detail reveal"><p>Chúng mình rất mong được đón bạn đến chung vui, cùng chứng kiến khoảnh khắc hai gia đình trở thành một.</p></div></section>
+
+<section class="story-chapter" aria-label="Lời hẹn của chúng mình">
+  <div class="chapter-scene">
+    <img src="assets/images/holding-hands.png" alt="Ảnh minh họa đôi tay cô dâu và chú rể" loading="lazy" width="1536" height="1024">
+    <div class="chapter-words"><p class="story-eyebrow">CHUYỆN HAI CHÚNG MÌNH</p><h2 class="reveal">Một cuộc gặp, một hành trình.</h2><p class="reveal">Chúng mình mong những ngày phía trước sẽ luôn có một người để cùng trở về.</p></div>
+  </div>
+</section>
+<section class="story-vows" aria-labelledby="vow-title">
+  <header class="reveal"><p class="story-eyebrow">MỘT CHƯƠNG MỚI</p><h2 id="vow-title">Từ những điều bình dị</h2></header>
+  <div class="vow-pair">
+    <article class="reveal"><span class="vow-initial" aria-hidden="true">T</span><h3>Thùy Trang</h3><p>Mong có một người cùng chia sẻ niềm vui, cùng lắng nghe những chuyện nhỏ và cùng yêu thương gia đình.</p></article>
+    <article class="reveal"><span class="vow-initial" aria-hidden="true">H</span><h3>Quốc Hảo</h3><p>Mong được nắm tay nhau qua những ngày bình thường, cùng chăm sóc một mái nhà và gìn giữ lời hẹn hôm nay.</p></article>
+  </div>
+</section>
+<section class="story-journey" aria-labelledby="journey-title">
+  <header class="reveal"><h2 id="journey-title">Những điều mình cùng chọn.</h2><p>Một lời hẹn được xây nên từ những điều nhỏ bé.</p></header>
+  <div class="journey-track">
+    <article class="reveal"><span aria-hidden="true">01</span><h3>Lắng nghe</h3><p>Dành thời gian cho nhau, cả những điều chưa kịp nói.</p></article>
+    <article class="reveal"><span aria-hidden="true">02</span><h3>Đồng hành</h3><p>Cùng đi qua thay đổi và tìm niềm vui trong mỗi ngày.</p></article>
+    <article class="reveal"><span aria-hidden="true">03</span><h3>Về chung một nhà</h3><p>Mang theo yêu thương của hai gia đình để bắt đầu hành trình mới.</p></article>
+  </div>
+</section>
+<section class="story-album" aria-labelledby="album-title">
+  <header class="reveal"><p class="story-eyebrow">ALBUM NGÀY VUI</p><h2 id="album-title">Giữ lại những dịu dàng.</h2><p>Chạm vào ảnh để ngắm gần hơn. Ảnh hiện tại là ảnh minh họa.</p></header>
+  <div class="album-grid">
+    <button class="album-photo reveal" type="button" data-photo="assets/images/couple-garden.png" aria-label="Mở ảnh chân dung đôi uyên ương"><img src="assets/images/couple-garden.png" alt="Đôi uyên ương giữa khu vườn" loading="lazy" width="1024" height="1536"><span>Hai người, một lời hẹn</span></button>
+    <button class="album-photo reveal" type="button" data-photo="assets/images/holding-hands.png" aria-label="Mở ảnh đôi tay"><img src="assets/images/holding-hands.png" alt="Một cái nắm tay dịu dàng" loading="lazy" width="1536" height="1024"><span>Cùng nhau đi tiếp</span></button>
+    <button class="album-photo reveal" type="button" data-photo="assets/images/reception.png" aria-label="Mở ảnh bàn tiệc"><img src="assets/images/reception.png" alt="Không gian bàn tiệc đón khách" loading="lazy" width="1774" height="887"><span>Chờ bạn đến chung vui</span></button>
+  </div>
+</section>
+<section class="venue" id="nha-chu-re" aria-labelledby="venue-title">
+  <div class="venue__copy">
+    <p class="eyebrow">ĐƯỜNG ĐẾN NGÀY VUI</p>
+    <h2 id="venue-title">Nhà chú rể</h2>
+    <p>Ngày cưới và giờ đón khách sẽ được cập nhật tại đây.</p>
+    <a class="venue__directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=20.9388189%2C106.1072559" target="_blank" rel="noopener noreferrer">
+      Chỉ đường trên Google Maps <span aria-hidden="true">↗</span>
     </a>
-    <div class="topbar__actions">
-      <p>Dành cho <strong>Thùy Trang & Quốc Hảo</strong></p>
-      <button class="soft-button" id="toggleHelp" type="button" aria-expanded="false" aria-controls="helpPanel">Cách chọn mẫu</button>
-    </div>
-  </header>
-  <aside class="help-panel" id="helpPanel" aria-hidden="true">
-    <button class="help-panel__close" id="closeHelp" type="button" aria-label="Đóng hướng dẫn">Đóng</button>
-    <p class="kicker">HƯỚNG DẪN NHANH</p>
-    <h2>Chọn bằng cảm xúc đầu tiên.</h2>
-    <ol>
-      <li>Bấm vào một mẫu trong danh sách.</li>
-      <li>Xem toàn bộ thiệp ở khung bên phải.</li>
-      <li>Thả tim cho những mẫu chị Trang thích.</li>
-      <li>Mở trang riêng để xem đúng kích thước thật.</li>
-    </ol>
-  </aside>
-  <div class="help-backdrop" id="helpBackdrop"></div>
-  <main class="app-shell">
-    <section class="catalog" aria-labelledby="catalogTitle">
-      <div class="catalog__intro">
-        <p class="kicker">06 PHONG CÁCH RIÊNG</p>
-        <h1 id="catalogTitle">Một ngày trọng đại,<br>nhiều cách để kể.</h1>
-        <p>Mỗi mẫu là một file HTML hoàn chỉnh. Tên cô dâu chú rể đã được đặt sẵn để gia đình dễ hình dung.</p>
-      </div>
-      <div class="filters" aria-label="Lọc mẫu thiệp">
-        <button class="filter is-active" type="button" data-filter="all">Tất cả</button>
-        <button class="filter" type="button" data-filter="photo">Có ảnh</button>
-        <button class="filter" type="button" data-filter="minimal">Tối giản</button>
-        <button class="filter" type="button" data-filter="traditional">Truyền thống</button>
-        <button class="filter" type="button" data-filter="favorite">Đã thích</button>
-      </div>
-      <div class="template-list" id="templateList">
-        <article class="template-card is-selected" data-category="photo romantic" data-src="invitations/01-vuon-suong.html" data-title="Vườn Sương" data-number="01">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Vườn Sương"><span class="template-card__thumb thumb--garden"><span>Thùy Trang<br><i>&</i> Quốc Hảo</span></span><span class="template-card__body"><b>Vườn Sương</b><small>Ảnh cưới, dịu dàng, tự nhiên</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Vườn Sương vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-        <article class="template-card" data-category="minimal modern" data-src="invitations/02-to-bao.html" data-title="Tờ Báo Ngày Vui" data-number="02">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Tờ Báo Ngày Vui"><span class="template-card__thumb thumb--editorial"><span>THE<br>WEDDING<br>EDITION</span></span><span class="template-card__body"><b>Tờ Báo Ngày Vui</b><small>Biên tập, cá tính, nhiều khoảng thở</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Tờ Báo Ngày Vui vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-        <article class="template-card" data-category="traditional" data-src="invitations/03-son-mai.html" data-title="Sơn Mài" data-number="03">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Sơn Mài"><span class="template-card__thumb thumb--lacquer"><span>TRANG<br><i>&</i><br>HẢO</span></span><span class="template-card__body"><b>Sơn Mài</b><small>Đỏ son, trang trọng, nét Việt</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Sơn Mài vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-        <article class="template-card" data-category="minimal modern" data-src="invitations/04-chrome.html" data-title="Chrome" data-number="04">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Chrome"><span class="template-card__thumb thumb--chrome"><span>TQ<br><i>18.10</i><br>QH</span></span><span class="template-card__body"><b>Chrome</b><small>Hiện đại, lạnh, thời trang</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Chrome vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-        <article class="template-card" data-category="photo romantic" data-src="invitations/05-phim-cu.html" data-title="Cuộn Phim" data-number="05">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Cuộn Phim"><span class="template-card__thumb thumb--film"><span>CHUYỆN<br>CỦA<br>CHÚNG MÌNH</span></span><span class="template-card__body"><b>Cuộn Phim</b><small>Điện ảnh, thân mật, giàu kỷ niệm</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Cuộn Phim vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-        <article class="template-card" data-category="traditional minimal" data-src="invitations/06-lua-ngoc.html" data-title="Lụa Ngọc" data-number="06">
-          <button class="template-card__select" type="button" aria-label="Xem mẫu Lụa Ngọc"><span class="template-card__thumb thumb--silk"><span>THÙY TRANG<br><i>se duyên cùng</i><br>QUỐC HẢO</span></span><span class="template-card__body"><b>Lụa Ngọc</b><small>Xanh ngọc, thanh lịch, tinh tế</small></span></button>
-          <button class="favorite" type="button" aria-label="Thêm Lụa Ngọc vào mẫu yêu thích" aria-pressed="false">♡</button>
-        </article>
-      </div>
-      <div class="empty-state" id="emptyState" hidden><p>Chưa có mẫu nào trong nhóm này.</p><button type="button" id="showAll">Xem tất cả mẫu</button></div>
-    </section>
-    <section class="preview-panel" aria-labelledby="previewTitle">
-      <div class="preview-toolbar">
-        <div><span id="previewNumber">MẪU 01</span><h2 id="previewTitle">Vườn Sương</h2></div>
-        <div class="preview-toolbar__actions">
-          <div class="viewport-switch" aria-label="Kích thước xem trước"><button class="is-active" type="button" data-viewport="desktop">Rộng</button><button type="button" data-viewport="mobile">Điện thoại</button></div>
-          <a class="primary-button" id="openFull" href="invitations/01-vuon-suong.html" target="_blank" rel="noopener">Mở trang riêng</a>
-        </div>
-      </div>
-      <div class="preview-stage" id="previewStage">
-        <div class="preview-loading" id="previewLoading" aria-live="polite"><span></span><p>Đang mở thiệp...</p></div>
-        <iframe id="previewFrame" src="invitations/01-vuon-suong.html" title="Xem trước mẫu thiệp Vườn Sương"></iframe>
-      </div>
-      <p class="preview-note">Nội dung ngày giờ và địa điểm hiện là bản minh họa, có thể thay bằng thông tin thật sau khi chọn mẫu.</p>
-    </section>
-  </main>
-  <script src="app.js"></script>
-</body>
-</html>
+  </div>
+  <iframe class="venue__map"
+    title="Bản đồ Google Maps đến nhà chú rể"
+    src="https://www.google.com/maps?q=20.9388189%2C106.1072559&amp;z=16&amp;output=embed"
+    loading="lazy" referrerpolicy="no-referrer" allowfullscreen></iframe>
+</section>
+<section class="story-finale"><p class="story-eyebrow reveal">THÙY TRANG & QUỐC HẢO</p><h2 class="reveal">Một lời hẹn giữa vườn xanh.</h2><p class="reveal">Sự hiện diện của bạn là một phần thật đẹp trong ngày bắt đầu hành trình mới của chúng mình.</p><button class="rsvp-trigger reveal" type="button">Gửi lời hồi đáp</button></section></main>
+<footer class="invitation-footer">THÙY TRANG & QUỐC HẢO · <a href="#">Về đầu trang</a></footer>
+<dialog class="rsvp-dialog"><form class="rsvp-card"><button class="rsvp-close" type="button">Đóng</button><p class="eyebrow">HẸN GẶP BẠN</p><h2>Bạn sẽ đến chứ?</h2><p>Đây là bản xem thử. Lời hồi đáp chưa được gửi đến gia đình.</p><label>Họ và tên<input name="name" required placeholder="Tên của bạn"></label><label>Số người tham dự<select name="guests"><option>1 khách</option><option>2 khách</option><option>3 khách</option><option>4 khách</option></select></label><button class="rsvp-card__submit" type="submit">Gửi lời xác nhận</button><p class="rsvp-status" role="status"></p></form></dialog><script src="assets/invitation.js"></script>
+</body></html>
