@@ -22,10 +22,16 @@ const errors = [];
 const externalWarnings = new Set();
 const localRequests = new Set();
 const heldImages = [];
+const musicRequests = [];
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
   if (message.id) return pending.get(message.id)?.(message);
   const p = message.params;
+  if (
+    message.method === "Network.requestWillBeSent" &&
+    /\/assets\/audio\/[^?]+\.mp3(?:\?|$)/.test(p.request.url)
+  )
+    musicRequests.push(p.request.url);
   if (message.method === "Fetch.requestPaused") {
     if (p.request.url.startsWith("file:")) {
       heldImages.push(p.requestId);
@@ -576,6 +582,63 @@ try {
     );
   }
   await metrics(390, 844);
+  for (const [roll, track] of [
+    [0.25, "young-and-beautiful"],
+    [0.75, "mai-mai-ben-nhau"],
+  ]) {
+    const seed = await send("Page.addScriptToEvaluateOnNewDocument", {
+      source: `Math.random=()=>${roll}`,
+    });
+    musicRequests.length = 0;
+    await navigate(pageUrl + "?draw=" + track);
+    assert.ok(
+      await evaluate(
+        `!document.querySelector('#wedding-music').hasAttribute('src') && document.querySelector('#wedding-music').paused`,
+      ),
+      "Draw is deferred until opening",
+    );
+    assert.equal(
+      musicRequests.length,
+      0,
+      "Neither track downloads before opening",
+    );
+    await key("Enter", "Enter", 13);
+    await until(
+      `document.body.dataset.invitationState==='open' && !document.querySelector('#wedding-music').paused && document.querySelector('#wedding-music').currentTime>0`,
+      "Selected track decodes and plays",
+    );
+    assert.equal(
+      await evaluate(`document.querySelector('#wedding-music').dataset.track`),
+      track,
+    );
+    assert.ok(
+      musicRequests.length > 0 &&
+        musicRequests.every((url) => url.includes("/" + track + ".mp3")),
+      "Only the selected track is loaded",
+    );
+    await click(".music-toggle");
+    await evaluate(`Math.random=()=>${1 - roll}`);
+    await click(".music-toggle");
+    await until(
+      `!document.querySelector('#wedding-music').paused`,
+      "Resume selected track",
+    );
+    assert.equal(
+      await evaluate(`document.querySelector('#wedding-music').dataset.track`),
+      track,
+      "Pause/resume cannot reroll",
+    );
+    assert.ok(
+      musicRequests.every((url) => url.includes("/" + track + ".mp3")),
+      "Resume does not download the other track",
+    );
+    await send("Page.removeScriptToEvaluateOnNewDocument", {
+      identifier: seed.identifier,
+    });
+  }
+  passed(
+    "Both random music outcomes play; only chosen audio loads; pause/resume preserves the draw",
+  );
   const blockedAudio = await send("Page.addScriptToEvaluateOnNewDocument", {
     source: `HTMLMediaElement.prototype.play=function(){return Promise.reject(new DOMException('Simulated autoplay policy','NotAllowedError'))}`,
   });

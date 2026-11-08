@@ -13,7 +13,9 @@ Thiệp cưới Quốc Hảo & Thùy Trang, HTML/CSS/JavaScript thuần, không 
 
 ## Nhạc nền
 
-`assets/audio/young-and-beautiful.mp3` là bản sao nguyên vẹn file “Young And Beautiful.mp3” do người dùng cung cấp, khoảng 3,78 MB. Không tải hoặc phát trước thao tác mở thiệp (`preload="none"`, không `autoplay`). Thao tác mở bằng chuột/chạm/Enter/Space bắt đầu phát nhạc, âm lượng mặc định 35%, phát lặp. Nút cố định **Bật nhạc / Tắt nhạc** có nhãn trợ năng và trạng thái thực tế.
+Hai bài nhạc là bản sao nguyên vẹn file người dùng cung cấp: `assets/audio/young-and-beautiful.mp3` (khoảng 3,78 MB) và `assets/audio/mai-mai-ben-nhau.mp3` — Noo Phước Thịnh (khoảng 5,78 MB). Mỗi lần mở thiệp chọn ngẫu nhiên **một bài, xác suất 50/50**. Việc chọn chỉ diễn ra một lần trong lượt mở đó: tắt/bật, thử phát lại hoặc chuyển tab không đổi bài. Reload rồi mở lại sẽ bốc thăm mới, có thể ngẫu nhiên trùng bài trước.
+
+Không chọn, tải hoặc phát nhạc trước thao tác mở (`preload="none"`, không `autoplay`, không gán `src` ban đầu). Chỉ bài được chọn mới tải. Thao tác mở bằng chuột/chạm/Enter/Space bắt đầu phát nhạc, âm lượng mặc định 35%, phát lặp. Nút **Bật nhạc / Tắt nhạc** giữ nguyên; nhãn trợ năng và tooltip cho biết tên bài đã chọn.
 
 Nếu trình duyệt chặn phát, thiệp vẫn mở bình thường, nút cho phép phát thủ công. Rời trang hoặc chuyển sang tab khác sẽ dừng nhạc; khách có thể bật lại. Lỗi tải/phát được xử lý riêng, không làm hỏng animation. Không có chức năng hồi đáp hoặc kết nối email trong bản hiện tại.
 

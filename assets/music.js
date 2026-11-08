@@ -5,10 +5,32 @@
   const label = button?.querySelector(".music-toggle__label");
   const status = document.querySelector("[data-music-status]");
   if (!audio || !button || !label) return;
+  const tracks = [
+    {
+      id: "young-and-beautiful",
+      title: "Young And Beautiful",
+      src: "assets/audio/young-and-beautiful.mp3",
+    },
+    {
+      id: "mai-mai-ben-nhau",
+      title: "Mãi Mãi Bên Nhau — Noo Phước Thịnh",
+      src: "assets/audio/mai-mai-ben-nhau.mp3",
+    },
+  ];
+  let selectedTrack = null;
   let wanted = false;
   let attempt = 0;
   audio.volume = 0.35;
   button.hidden = false;
+
+  function selectTrack() {
+    if (selectedTrack) return;
+    // One 50/50 draw per invitation. Pause/resume and retries keep that song.
+    selectedTrack = tracks[Math.random() < 0.5 ? 0 : 1];
+    audio.src = selectedTrack.src;
+    audio.dataset.track = selectedTrack.id;
+    button.title = `Nhạc nền: ${selectedTrack.title}`;
+  }
 
   function render(state, message = "") {
     button.dataset.musicState = state;
@@ -19,8 +41,8 @@
     button.setAttribute(
       "aria-label",
       state === "loading"
-        ? "Dừng tải nhạc nền Young And Beautiful"
-        : `${playing ? "Tắt" : "Bật"} nhạc nền Young And Beautiful`,
+        ? `Dừng tải nhạc nền ${selectedTrack?.title || ""}`.trim()
+        : `${playing ? "Tắt" : "Bật"} nhạc nền${selectedTrack ? " " + selectedTrack.title : ""}`,
     );
     if (status) status.textContent = message;
   }
@@ -31,6 +53,7 @@
     render("paused");
   }
   async function play() {
+    selectTrack();
     wanted = true;
     const current = ++attempt;
     render("loading");
@@ -48,7 +71,7 @@
       render(
         "paused",
         error.name === "NotAllowedError"
-          ? "Chạm vào nút nhạc để phát Young And Beautiful."
+          ? `Chạm vào nút nhạc để phát ${selectedTrack.title}.`
           : "Nhạc chưa phát được. Bạn có thể chạm nút nhạc để thử lại.",
       );
     }

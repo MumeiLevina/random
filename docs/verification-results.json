@@ -10,6 +10,7 @@
     "375x568 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
     "390px · initial fragment, bottom reload, guest scrolling and history back",
     "1440px · initial fragment, bottom reload, guest scrolling and history back",
+    "Both random music outcomes play; only chosen audio loads; pause/resume preserves the draw",
     "Blocked music degrades to a working manual control without blocking invitation",
     "Late image/window load does not reapply initial fragment scrolling",
     "Reduced motion opens immediately, readable text, no particles",
