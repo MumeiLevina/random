@@ -1,6 +1,7 @@
 # Test artifacts and browser profile
 .story-test-profile/
 verification-*.png
+verification/
 
 # OS & Editor files
 .DS_Store
