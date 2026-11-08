@@ -908,12 +908,37 @@
 }
 @media (max-height: 650px) {
   .invitation-gate {
-    padding: 1.2rem;
+    padding: 1rem 1.25rem;
   }
-  .gate__content {
-    width: min(430px, 100%);
-    padding: 0;
+}
+@media (max-height: 560px) {
+  .envelope__front {
+    padding: 0.5rem;
   }
+  .gate__label {
+    font-size: 0.4rem;
+  }
+  .gate__date {
+    font-size: 0.44rem;
+    margin: 0.25rem 0;
+  }
+  .gate__monogram {
+    width: 38px;
+    height: 38px;
+    left: calc(50% - 19px);
+    top: calc(50% - 19px);
+    font-size: 0.8rem;
+    border-width: 2px;
+  }
+  .gate__monogram span {
+    font-size: 0.75em;
+  }
+  .envelope__flap {
+    height: 48%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-gate.is-opening {
   .gate__edition {
     font-size: 0.45rem;
   }
