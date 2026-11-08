@@ -448,14 +448,11 @@ try {
       "Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới",
     );
     const reception = await evaluate(
-      `(()=>{const card=document.querySelector('.wedding-schedule__event');const bride=new URL(card.querySelector('[data-reception-location="bride"] a').href);return {count:card.querySelectorAll('a').length,bride:bride.searchParams.get('query'),hasGroom:!!card.querySelector('[data-reception-location="groom"]')}})()`,
+      `(()=>{const card=document.querySelector('.wedding-schedule__event');const bride=new URL(card.querySelector('[data-reception-location="bride"] a').href);const groom=new URL(card.querySelector('[data-reception-location="groom"] a').href);return {count:card.querySelectorAll('a').length,bride:bride.searchParams.get('destination'),groom:groom.searchParams.get('destination')}})()`,
     );
-    assert.equal(reception.count, 1);
-    assert.equal(
-      reception.bride,
-      "Ao Hồ, Tổ dân phố Rừng, Dị Sử, Mỹ Hào, Hưng Yên",
-    );
-    assert.equal(reception.hasGroom, false);
+    assert.equal(reception.count, 2);
+    assert.equal(reception.bride, "20.920676,106.084972");
+    assert.equal(reception.groom, "20.9388189,106.1072559");
     assert.ok(
       await evaluate(
         `!document.querySelector('[class*="rsvp"]') && document.querySelector('.venue').nextElementSibling.matches('.story-finale')`,

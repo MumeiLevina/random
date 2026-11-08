@@ -4,7 +4,7 @@ Font tên đã đổi sang HLT AphroditeSlimPro đúng ảnh tham chiếu. Đã 
 
 Kết quả chi tiết: [verification-results.json](verification-results.json). **19 nhóm kiểm tra đạt**. Trình duyệt kiểm thử: Chromium trên Windows, 08/11/2026.
 
-Ngày 23/11 hiện chỉ hiển thị nhà gái với link bản đồ tìm theo địa chỉ Ao Hồ; mục nhà trai trùng lặp đã được bỏ. Nhà trai ngày 24/11 và bản đồ Hiển Dương gần cuối trang được giữ nguyên. Bộ kiểm thử kiểm tra ngày 23 có đúng một link và không có mục nhà trai. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”.
+Ngày 23/11 hiển thị cả nhà gái và nhà trai, mỗi nơi một link chỉ đường: nhà gái dùng tọa độ mới `20.920676,106.084972`, nhà trai dùng cùng tọa độ bản đồ ngày 24/11. Mục nhà trai và bản đồ Hiển Dương gần cuối trang được giữ nguyên. Bộ kiểm thử kiểm tra ngày 23 có đúng hai link và cả hai đúng tọa độ. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”.
 
 Kiểm thử các viewport 320, 375, 390, 768, 1440px, landscape 844×390 và màn hình thấp 375×568. Kiểm tra mở bằng bàn phím/chạm/chuột, không mở lặp, focus, tên tiếng Việt, dữ liệu cưới, ảnh thật, lightbox và không tràn ngang.
 

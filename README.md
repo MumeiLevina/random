@@ -4,7 +4,7 @@ Thiệp cưới Quốc Hảo & Thùy Trang, HTML/CSS/JavaScript thuần, không 
 
 ## Nội dung hiện tại
 
-- Bữa cơm thân mật ngày 23/11/2026 chỉ hiển thị **nhà gái — Ao Hồ, Tổ dân phố Rừng, Dị Sử, Mỹ Hào, Hưng Yên**, với một link bản đồ tìm theo địa chỉ. Không lặp lại nhà trai trong ngày này; nhà trai được giữ trong lễ thành hôn ngày 24/11 và bản đồ gần cuối trang.
+- Bữa cơm thân mật ngày 23/11/2026 có hai địa điểm và hai link chỉ đường riêng: **nhà gái — Ao Hồ, Tổ dân phố Rừng, Dị Sử, Mỹ Hào, Hưng Yên** dùng tọa độ `20.920676,106.084972`; **nhà trai — Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên** dùng đúng tọa độ `20.9388189,106.1072559` của lễ thành hôn ngày 24/11 và bản đồ gần cuối trang.
 - Tên trên tab và khi chia sẻ: **Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới**.
 - Lễ thành hôn: 24/11/2026, gia đình nhà trai, Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên.
 - Giữ nguyên thông tin âm lịch và tên hai bên gia đình. Theo yêu cầu, không hiển thị các dòng giờ đón khách/giờ làm lễ sẽ cập nhật; không tự thêm giờ.
