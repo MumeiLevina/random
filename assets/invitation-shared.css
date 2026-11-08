@@ -34,7 +34,8 @@ a {
 }
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 button,
@@ -49,7 +50,8 @@ button {
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 5px;
 }
@@ -191,7 +193,7 @@ h1:focus {
   transform: scale(0.98);
 }
 .rsvp-dialog {
-  width: min(500px, calc(100% - 2rem));
+  width: min(580px, calc(100% - 2rem));
   max-height: 90dvh;
   border: 1px solid var(--gold);
   padding: 0;
@@ -232,7 +234,8 @@ dialog[open] {
   font-size: 0.75rem;
 }
 .rsvp-card input,
-.rsvp-card select {
+.rsvp-card select,
+.rsvp-card textarea {
   width: 100%;
   min-height: 48px;
   border: 1px solid #a1b0a0;
@@ -240,6 +243,104 @@ dialog[open] {
   padding: 0.85rem;
   color: var(--green);
   border-radius: 0;
+}
+.rsvp-card textarea {
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 100px;
+}
+.rsvp-card fieldset {
+  padding: 0;
+  margin: 1.5rem 0 0;
+  border: 0;
+  min-width: 0;
+}
+.rsvp-card legend {
+  font-size: 0.75rem;
+  line-height: 1.8;
+  margin-bottom: 0.6rem;
+}
+.rsvp-card fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+.rsvp-card fieldset label:has(input:checked) {
+  background: #e3e9df;
+  border-color: #8a9f8b;
+}
+.rsvp-card fieldset input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--green);
+}
+.rsvp-card fieldset input:focus-visible {
+  outline: 2px solid #8d744b;
+  outline-offset: 3px;
+}
+.rsvp-card .field-optional {
+  font-size: 0.65rem;
+  color: #657263;
+  font-weight: 400;
+}
+.rsvp-card .rsvp-privacy {
+  font-size: 0.64rem;
+  line-height: 1.8;
+  color: #657263;
+  margin: 1.5rem 0 0;
+}
+.rsvp-honeypot {
+  display: none;
+}
+.rsvp-card__submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.rsvp-card__submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.rsvp-card[data-rsvp-state="success"] .rsvp-fields,
+.rsvp-card[data-rsvp-state="success"] .rsvp-card__submit {
+  display: none;
+}
+.rsvp-card[data-rsvp-state="success"] .rsvp-status {
+  color: var(--green);
+  border-block: 1px solid var(--line);
+  padding: 1.5rem 0;
+  font-size: 1rem;
+  font-family: var(--serif);
+}
+.rsvp-edit {
+  padding: 0.7rem 0;
+  min-height: 44px;
+  color: var(--green);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+.rsvp-status:focus {
+  outline: none;
+}
+.rsvp-attending-fields[hidden],
+.rsvp-edit[hidden] {
+  display: none;
 }
 .rsvp-card__submit {
   width: 100%;

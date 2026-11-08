@@ -21,7 +21,7 @@
   z-index: -3;
   background:
     linear-gradient(90deg, rgba(9, 29, 22, 0.85), rgba(16, 40, 32, 0.62)),
-    url("images/couple-garden.webp") center 37% / cover;
+    url("images/nm_00107.webp") center 48% / cover;
   filter: blur(7px);
 }
 .invitation-gate::after {
@@ -408,7 +408,7 @@
       rgba(9, 29, 22, 0.77) 34%,
       rgba(9, 29, 22, 0.08) 76%
     ),
-    url("images/couple-garden.webp") right 54% / auto 130% no-repeat;
+    url("images/nm_00004.webp") right 54% / auto 130% no-repeat;
   background-color: var(--pine);
 }
 .hero__frame {
@@ -818,8 +818,10 @@
     margin-top: 2rem;
   }
   .hero__content {
-    padding: 6rem 1.7rem 3rem;
-    align-self: flex-end;
+    padding: 5rem 1.7rem 2.2rem;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
   }
   .hero .couple-title {
     font-size: clamp(2.8rem, 10.5vw, 5rem);
@@ -828,11 +830,12 @@
     background:
       linear-gradient(
         0deg,
-        rgba(9, 29, 22, 0.96),
-        rgba(9, 29, 22, 0.55) 46%,
-        rgba(9, 29, 22, 0.08) 85%
+        rgba(9, 29, 22, 0.94),
+        rgba(9, 29, 22, 0.12) 43%,
+        rgba(9, 29, 22, 0.28) 65%,
+        rgba(9, 29, 22, 0.78)
       ),
-      url("images/couple-garden.webp") center 43% / cover;
+      url("images/nm_00004.webp") center 50% / cover;
   }
   .hero__frame {
     inset: 0.75rem;
@@ -843,7 +846,8 @@
   }
   .hero__invitation {
     font-size: 1rem;
-    margin: 1rem 0;
+    margin: auto 0 1rem;
+    padding-top: 2rem;
   }
   .hero .eyebrow {
     margin-bottom: 1rem;
@@ -880,7 +884,7 @@
   }
   .story img {
     order: -1;
-    aspect-ratio: 4/3;
+    aspect-ratio: 2/3;
   }
   .promise {
     padding: 0 1.25rem 5rem;
@@ -942,7 +946,8 @@
     margin: 0 0 0.5rem;
   }
   .hero__invitation {
-    margin: 0.5rem 0;
+    margin: auto 0 0.5rem;
+    padding-top: 1rem;
     font-size: 0.85rem;
   }
   .hero__wedding-date {

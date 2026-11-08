@@ -18,10 +18,12 @@
   position: absolute;
   inset: 0;
   z-index: -2;
-  width: 100%;
+  left: 45%;
+  width: 55%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.48);
+  object-position: center 62%;
+  filter: brightness(0.72);
   transform: scale(1.08);
 }
 .chapter-scene::after {
@@ -32,7 +34,7 @@
   background: linear-gradient(90deg, rgba(9, 29, 22, 0.65), transparent);
 }
 .chapter-words {
-  max-width: 760px;
+  max-width: 36vw;
 }
 .chapter-words h2 {
   font-size: clamp(2.5rem, 5vw, 5rem);
@@ -143,19 +145,28 @@
   overflow: hidden;
 }
 .album-photo:first-child {
-  grid-row: span 2;
+  grid-column: 1;
 }
 .album-photo img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16/10;
+  aspect-ratio: 2/3;
   object-fit: cover;
   transition: transform 0.9s var(--ease);
 }
 .album-photo:first-child img {
-  aspect-ratio: 3/4;
-  height: calc(100% - 3rem);
+  aspect-ratio: 2/3;
+  height: auto;
+}
+.album-photo:nth-child(even) {
+  margin-top: 4rem;
+}
+.album-photo--ceremony {
+  grid-column: 1/-1;
+  width: min(520px, 100%);
+  justify-self: center;
+  margin-top: 2rem;
 }
 .album-photo span {
   display: block;
@@ -190,7 +201,7 @@
   z-index: -2;
   background:
     linear-gradient(#102820db, #102820eb),
-    url("images/reception.webp") center/cover;
+    url("images/nm_00158.webp") center 60% / cover;
 }
 .story-finale::after {
   content: "";
@@ -351,7 +362,20 @@ body:has(dialog[open]) {
   }
   .album-photo:first-child img {
     height: auto;
-    aspect-ratio: 4/5;
+    aspect-ratio: 2/3;
+  }
+  .album-photo:nth-child(even),
+  .album-photo--ceremony {
+    margin-top: 0;
+  }
+  .chapter-scene > img {
+    left: 0;
+    width: 100%;
+    object-position: center 65%;
+    filter: brightness(0.38);
+  }
+  .chapter-words {
+    max-width: 100%;
   }
   .chapter-scene {
     padding: 6rem 1.25rem;

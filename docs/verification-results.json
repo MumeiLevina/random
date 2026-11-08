@@ -8,6 +8,8 @@
     "1440x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
     "844x390 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
     "375x568 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
+    "RSVP provider failure, activation, decline, preserved inputs and successful retry (mocked provider)",
+    "RSVP timeout reports uncertainty without discarding input (mocked provider)",
     "Reduced motion opens immediately, readable text, no particles",
     "Canceled / unsupported animations still release content",
     "Runtime error fails open",
@@ -22,8 +24,13 @@
     "1440-envelope.png",
     "1440-opening.png",
     "1440-hero.png",
-    "1440-schedule.png"
+    "1440-schedule.png",
+    "390-rsvp.png",
+    "390-rsvp-success.png",
+    "1440-rsvp.png",
+    "1440-rsvp-success.png"
   ],
   "externalWarnings": [],
-  "browser": "Chrome/156.0.8078.80"
+  "browser": "Chrome/156.0.8078.80",
+  "emailVerification": "Provider responses mocked. No real delivery or mailbox activation verified by this suite."
 }

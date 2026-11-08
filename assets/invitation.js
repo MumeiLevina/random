@@ -93,7 +93,7 @@
     const photos = [...document.querySelectorAll("[data-photo]")];
     const photoDialog = document.createElement("dialog");
     photoDialog.className = "photo-dialog";
-    photoDialog.setAttribute("aria-label", "Xem ảnh cưới minh họa");
+    photoDialog.setAttribute("aria-label", "Ảnh cưới Quốc Hảo và Thùy Trang");
     photoDialog.innerHTML =
       '<button type="button" class="photo-close" autofocus>Đóng ảnh ×</button><img alt="">' +
       '<div class="photo-caption"><button type="button" class="photo-nav photo-prev" aria-label="Ảnh trước">←</button><p aria-live="polite"></p>' +
@@ -110,7 +110,7 @@
       photoDialog.querySelector(".photo-caption p").textContent =
         button.querySelector("span").textContent;
       photoDialog.querySelector(".photo-counter").textContent =
-        `${photoIndex + 1} / ${photos.length} · Ảnh minh họa`;
+        `${photoIndex + 1} / ${photos.length} · Quốc Hảo & Thùy Trang`;
     }
     photos.forEach((button, index) =>
       button.addEventListener("click", () => {
@@ -153,18 +153,6 @@
       rsvp.addEventListener("close", () =>
         rsvpOpener?.focus({ preventScroll: true }),
       );
-      rsvp.querySelector("form").addEventListener("submit", (event) => {
-        event.preventDefault();
-        const name = new FormData(event.currentTarget).get("name").trim();
-        if (!name) {
-          rsvp.querySelector("input").value = "";
-          rsvp.querySelector("input").reportValidity();
-          return;
-        }
-        // Demo: no request or persistence of guest data.
-        rsvp.querySelector(".rsvp-status").textContent =
-          `Cảm ơn ${name}. Đây là bản xem thử, lời hồi đáp chưa được gửi đến gia đình.`;
-      });
     }
     [photoDialog, rsvp].filter(Boolean).forEach((dialog) => {
       dialog.addEventListener("click", (event) => {
