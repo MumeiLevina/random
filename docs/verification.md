@@ -2,6 +2,8 @@
 
 Kết quả chi tiết: [verification-results.json](verification-results.json). **18 nhóm kiểm tra đạt**. Trình duyệt kiểm thử: Chromium trên Windows, 08/11/2026.
 
+Bổ sung sau khi sửa lịch ngày 23/11 và tên thiệp: kiểm tra riêng đạt trên 320/375/390/768/1440px. Xác nhận có đúng hai link cho hai địa điểm, nhà gái tìm theo địa chỉ Ao Hồ, nhà trai dùng cùng tọa độ bản đồ ngày 24/11; địa chỉ Hiển Dương được giữ nguyên. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”. Các link đủ vùng chạm 44px và không gây tràn ngang.
+
 Kiểm thử các viewport 320, 375, 390, 768, 1440px, landscape 844×390 và màn hình thấp 375×568. Kiểm tra mở bằng bàn phím/chạm/chuột, không mở lặp, focus, tên tiếng Việt, dữ liệu cưới, ảnh thật, lightbox và không tràn ngang.
 
 Nhạc không tải/phát trước thao tác mở; sau thao tác mở, file MP3 được giải mã và phát thật trong trình duyệt kiểm thử. Kiểm tra nút dừng/bật lại và nhánh trình duyệt chặn phát. Nhạc lỗi không ngăn mở thiệp. Các nhánh scroll/history vẫn gồm URL có fragment, reload từ cuối, Back và ảnh tải chậm.

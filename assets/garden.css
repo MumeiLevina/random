@@ -655,6 +655,20 @@
   text-underline-offset: 5px;
   font-size: 0.7rem;
 }
+.wedding-schedule__locations {
+  display: grid;
+  gap: 1.25rem;
+}
+.wedding-schedule__location p {
+  margin: 0;
+}
+.wedding-schedule__location + .wedding-schedule__location {
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+}
+.wedding-schedule__location a {
+  gap: 0.7rem;
+}
 .family-heading {
   text-align: center;
   margin: 4.5rem 0 2rem;

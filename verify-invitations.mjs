@@ -364,9 +364,28 @@ try {
     assert.ok(
       !text.includes("Giờ đón khách sẽ được cập nhật") &&
         !text.includes("Giờ làm lễ sẽ được cập nhật") &&
-        !text.includes("Ao Hồ"),
+        text.includes("Ao Hồ"),
       "Requested outdated copy removed",
     );
+    assert.equal(
+      await evaluate("document.title"),
+      "Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới",
+    );
+    assert.equal(
+      await evaluate(
+        `document.querySelector('meta[property="og:title"]').content`,
+      ),
+      "Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới",
+    );
+    const reception = await evaluate(
+      `(()=>{const bride=new URL(document.querySelector('[data-reception-location="bride"] a').href);const groom=new URL(document.querySelector('[data-reception-location="groom"] a').href);return {count:document.querySelector('.wedding-schedule__event').querySelectorAll('a').length,bride:bride.searchParams.get('query'),groom:groom.searchParams.get('destination')}})()`,
+    );
+    assert.equal(reception.count, 2);
+    assert.equal(
+      reception.bride,
+      "Ao Hồ, Tổ dân phố Rừng, Dị Sử, Mỹ Hào, Hưng Yên",
+    );
+    assert.equal(reception.groom, "20.9388189,106.1072559");
     assert.ok(
       await evaluate(
         `!document.querySelector('[class*="rsvp"]') && document.querySelector('.venue').nextElementSibling.matches('.story-finale')`,
