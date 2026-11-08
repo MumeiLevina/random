@@ -17,6 +17,7 @@ const contentTypes = {
   ".png": "image/png",
   ".woff2": "font/woff2",
   ".mp3": "audio/mpeg",
+  ".m4a": "audio/mp4",
 };
 const server = createServer(async (request, response) => {
   try {
@@ -85,7 +86,7 @@ socket.addEventListener("message", (event) => {
   const p = message.params;
   if (
     message.method === "Network.requestWillBeSent" &&
-    /\/assets\/audio\/[^?]+\.mp3(?:\?|$)/.test(p.request.url)
+    /\/assets\/audio\/[^?]+\.(?:mp3|m4a)(?:\?|$)/.test(p.request.url)
   )
     musicRequests.push(p.request.url);
   if (message.method === "Fetch.requestPaused") {
@@ -645,9 +646,11 @@ try {
     );
   }
   await metrics(390, 844);
-  for (const [roll, track] of [
-    [0.25, "young-and-beautiful"],
-    [0.75, "mai-mai-ben-nhau"],
+  for (const [roll, track, extension] of [
+    [0.125, "young-and-beautiful", "mp3"],
+    [0.375, "mai-mai-ben-nhau", "mp3"],
+    [0.625, "forever-and-ever-and-always", "m4a"],
+    [0.875, "doan-ket-happy-ending", "mp3"],
   ]) {
     const seed = await send("Page.addScriptToEvaluateOnNewDocument", {
       source: `Math.random=()=>${roll}`,
@@ -676,7 +679,7 @@ try {
     );
     assert.ok(
       musicRequests.length > 0 &&
-        musicRequests.every((url) => url.includes("/" + track + ".mp3")),
+        musicRequests.every((url) => url.includes("/" + track + "." + extension)),
       "Only the selected track is loaded",
     );
     await click(".music-toggle");
@@ -692,7 +695,7 @@ try {
       "Pause/resume cannot reroll",
     );
     assert.ok(
-      musicRequests.every((url) => url.includes("/" + track + ".mp3")),
+      musicRequests.every((url) => url.includes("/" + track + "." + extension)),
       "Resume does not download the other track",
     );
     await send("Page.removeScriptToEvaluateOnNewDocument", {
@@ -700,7 +703,7 @@ try {
     });
   }
   passed(
-    "Both random music outcomes play; only chosen audio loads; pause/resume preserves the draw",
+    "All four random music outcomes play; only chosen audio loads; pause/resume preserves the draw",
   );
   const blockedAudio = await send("Page.addScriptToEvaluateOnNewDocument", {
     source: `HTMLMediaElement.prototype.play=function(){return Promise.reject(new DOMException('Simulated autoplay policy','NotAllowedError'))}`,

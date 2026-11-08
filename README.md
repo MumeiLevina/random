@@ -13,7 +13,7 @@ Thiệp cưới Quốc Hảo & Thùy Trang, HTML/CSS/JavaScript thuần, không 
 
 ## Nhạc nền
 
-Hai bài nhạc là bản sao nguyên vẹn file người dùng cung cấp: `assets/audio/young-and-beautiful.mp3` (khoảng 3,78 MB) và `assets/audio/mai-mai-ben-nhau.mp3` — Noo Phước Thịnh (khoảng 5,78 MB). Mỗi lần mở thiệp chọn ngẫu nhiên **một bài, xác suất 50/50**. Việc chọn chỉ diễn ra một lần trong lượt mở đó: tắt/bật, thử phát lại hoặc chuyển tab không đổi bài. Reload rồi mở lại sẽ bốc thăm mới, có thể ngẫu nhiên trùng bài trước.
+Bốn bài nhạc là bản sao nguyên vẹn file người dùng cung cấp: `assets/audio/young-and-beautiful.mp3` (khoảng 3,78 MB) và `assets/audio/mai-mai-ben-nhau.mp3` — Noo Phước Thịnh (khoảng 5,78 MB). Thêm `assets/audio/forever-and-ever-and-always.m4a` — Ryan Mack và `assets/audio/doan-ket-happy-ending.mp3` — HITStory Live Version. Mỗi lần mở thiệp chọn ngẫu nhiên **một trong bốn bài, xác suất 25% mỗi bài**. Việc chọn chỉ diễn ra một lần trong lượt mở đó: tắt/bật, thử phát lại hoặc chuyển tab không đổi bài. Reload rồi mở lại sẽ bốc thăm mới, có thể ngẫu nhiên trùng bài trước.
 
 Không chọn, tải hoặc phát nhạc trước thao tác mở (`preload="none"`, không `autoplay`, không gán `src` ban đầu). Chỉ bài được chọn mới tải. Thao tác mở bằng chuột/chạm/Enter/Space bắt đầu phát nhạc, âm lượng mặc định 35%, phát lặp. Nút **Bật nhạc / Tắt nhạc** giữ nguyên; nhãn trợ năng và tooltip cho biết tên bài đã chọn.
 

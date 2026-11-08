@@ -10,7 +10,7 @@ Kiểm thử các viewport 320, 375, 390, 768, 1440px, landscape 844×390 và m�
 
 Nhạc không tải/phát trước thao tác mở; sau thao tác mở, file MP3 được giải mã và phát thật trong trình duyệt kiểm thử. Kiểm tra nút dừng/bật lại và nhánh trình duyệt chặn phát. Nhạc lỗi không ngăn mở thiệp. Các nhánh scroll/history vẫn gồm URL có fragment, reload từ cuối, Back và ảnh tải chậm.
 
-Gacha hai bài: kiểm thử điều khiển kết quả ngẫu nhiên để buộc cả hai nhánh, xác nhận mỗi file đều giải mã/phát được. Không có `src` hoặc request MP3 trước khi mở, và chỉ file được chọn mới được tải. Sau khi tắt nhạc rồi đổi kết quả ngẫu nhiên giả lập và bật lại, bài vẫn không thay đổi. Mỗi lượt mở mới có thể bốc thăm lại; việc trùng bài ngẫu nhiên ở các lượt liên tiếp là hợp lệ.
+Gacha bốn bài: kiểm thử điều khiển kết quả ngẫu nhiên để buộc cả bốn nhánh, xác nhận mỗi file đều giải mã/phát được. Không có `src` hoặc request MP3/M4A trước khi mở, và chỉ file được chọn mới được tải. Sau khi tắt nhạc rồi đổi kết quả ngẫu nhiên giả lập và bật lại, bài vẫn không thay đổi. Mỗi lượt mở mới có thể bốc thăm lại; việc trùng bài ngẫu nhiên ở các lượt liên tiếp là hợp lệ.
 
 Mục Nhà chú rể được kiểm tra nằm ngay trước cảnh cuối, bản đồ và chỉ đường cùng tọa độ. Không còn thành phần hồi đáp hoặc yêu cầu gửi thư. Nội dung lịch cưới kiểm tra địa điểm nhà gái mới và không còn các dòng giờ sẽ được cập nhật.
 

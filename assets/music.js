@@ -16,6 +16,16 @@
       title: "Mãi Mãi Bên Nhau — Noo Phước Thịnh",
       src: "assets/audio/mai-mai-ben-nhau.mp3",
     },
+    {
+      id: "forever-and-ever-and-always",
+      title: "Forever and Ever and Always — Ryan Mack",
+      src: "assets/audio/forever-and-ever-and-always.m4a",
+    },
+    {
+      id: "doan-ket-happy-ending",
+      title: "Đoạn Kết (Happy Ending) — HITStory Live Version",
+      src: "assets/audio/doan-ket-happy-ending.mp3",
+    },
   ];
   let selectedTrack = null;
   let wanted = false;
@@ -25,8 +35,8 @@
 
   function selectTrack() {
     if (selectedTrack) return;
-    // One 50/50 draw per invitation. Pause/resume and retries keep that song.
-    selectedTrack = tracks[Math.random() < 0.5 ? 0 : 1];
+    // One equally weighted draw per invitation. Pause/resume keeps that song.
+    selectedTrack = tracks[Math.floor(Math.random() * tracks.length)];
     audio.src = selectedTrack.src;
     audio.dataset.track = selectedTrack.id;
     button.title = `Nhạc nền: ${selectedTrack.title}`;
