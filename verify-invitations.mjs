@@ -20,9 +20,6 @@ let nextId = 0;
 const pending = new Map();
 const errors = [];
 const externalWarnings = new Set();
-let rsvpMock = { success: "true", message: "Success" };
-let rsvpDelay = 180;
-const rsvpRequests = [];
 const localRequests = new Set();
 const heldImages = [];
 socket.addEventListener("message", (event) => {
@@ -33,30 +30,6 @@ socket.addEventListener("message", (event) => {
     if (p.request.url.startsWith("file:")) {
       heldImages.push(p.requestId);
       return;
-    }
-    const responseHeaders = [
-      { name: "Access-Control-Allow-Origin", value: "*" },
-      { name: "Access-Control-Allow-Methods", value: "POST, OPTIONS" },
-      { name: "Access-Control-Allow-Headers", value: "Content-Type" },
-      { name: "Content-Type", value: "application/json" },
-    ];
-    if (p.request.method === "OPTIONS") {
-      void send("Fetch.fulfillRequest", {
-        requestId: p.requestId,
-        responseCode: 204,
-        responseHeaders,
-      });
-    } else {
-      rsvpRequests.push(JSON.parse(p.request.postData || "{}"));
-      const body = JSON.stringify(rsvpMock);
-      setTimeout(() => {
-        void send("Fetch.fulfillRequest", {
-          requestId: p.requestId,
-          responseCode: 200,
-          responseHeaders,
-          body: Buffer.from(body).toString("base64"),
-        }).catch(() => {});
-      }, rsvpDelay);
     }
   }
   if (message.method === "Runtime.exceptionThrown")
@@ -212,12 +185,6 @@ try {
   await send("Runtime.enable");
   await send("Network.enable");
   await send("Log.enable");
-  // Every provider request is intercepted: this suite never emails real guests/family.
-  await send("Fetch.enable", {
-    patterns: [
-      { urlPattern: "https://formsubmit.co/*", requestStage: "Request" },
-    ],
-  });
   await send("Emulation.setEmulatedMedia", {
     features: [{ name: "prefers-reduced-motion", value: "no-preference" }],
   });
@@ -245,6 +212,12 @@ try {
       ),
       true,
       "Initial focus and inert main",
+    );
+    assert.ok(
+      await evaluate(
+        `document.querySelector('#wedding-music').paused && document.querySelector('#wedding-music').readyState===0`,
+      ),
+      "No audio autoplay or preloading before guest interaction",
     );
     assert.ok(
       await evaluate(
@@ -317,7 +290,33 @@ try {
     );
     assert.equal(opening.focus, "hero-title");
     await delay(550);
-    if ([390, 1440].includes(width)) await screenshot(`${width}-hero`);
+    await until(
+      `!document.querySelector('#wedding-music').paused && document.querySelector('#wedding-music').currentTime>0`,
+      "Music starts from opening gesture",
+    );
+    assert.equal(
+      await evaluate(
+        `document.querySelector('.music-toggle').getAttribute('aria-pressed')`,
+      ),
+      "true",
+    );
+    await click(".music-toggle");
+    assert.ok(
+      await evaluate(
+        `document.querySelector('#wedding-music').paused && document.querySelector('.music-toggle').getAttribute('aria-pressed')==='false'`,
+      ),
+      "Music pauses",
+    );
+    await click(".music-toggle");
+    await until(
+      `!document.querySelector('#wedding-music').paused && document.querySelector('.music-toggle').getAttribute('aria-pressed')==='true'`,
+      "Music resumes",
+    );
+    await click(".music-toggle");
+    if ([390, 1440].includes(width)) {
+      await delay(250);
+      await screenshot(`${width}-hero`);
+    }
     assert.ok(
       await evaluate(
         `(() => { const names=[...document.querySelectorAll('.hero .couple-title>*')].map(e=>e.getBoundingClientRect()); return names.every((r,i)=>r.left>=0&&r.right<=innerWidth&&(!i||r.top>=names[i-1].bottom-1)) && document.documentElement.scrollWidth<=innerWidth+1; })()`,
@@ -330,7 +329,9 @@ try {
       ),
       "Vietnamese fonts loaded",
     );
-    const text = await evaluate(`document.querySelector('main').textContent`);
+    const text = await evaluate(
+      `document.querySelector('main').textContent.replace(/\\s+/g,' ').trim()`,
+    );
     assert.equal(
       await evaluate(`document.querySelectorAll('[data-photo]').length`),
       5,
@@ -349,18 +350,29 @@ try {
       "24/11/2026",
       "15 tháng 10 năm Bính Ngọ",
       "16 tháng 10 năm Bính Ngọ",
-      "Ao Hồ thôn Rừng",
+      "Gia đình nhà gái",
+      "Tổ dân phố Rừng, Dị Sử, Mỹ Hào, Hưng Yên",
       "Dị Sử, Mỹ Hào, Hưng Yên",
       "Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên",
       "Đặng Đình Mười",
       "Nguyễn Thị Duyên",
       "Hàn Ngọc Tú",
       "Nguyễn Thị Kim Oanh",
-      "Giờ đón khách sẽ được cập nhật.",
-      "Giờ làm lễ sẽ được cập nhật.",
     ])
       assert.ok(text.includes(required), required);
     assert.ok(!/\d{1,2}:\d{2}/.test(text), "No invented times");
+    assert.ok(
+      !text.includes("Giờ đón khách sẽ được cập nhật") &&
+        !text.includes("Giờ làm lễ sẽ được cập nhật") &&
+        !text.includes("Ao Hồ"),
+      "Requested outdated copy removed",
+    );
+    assert.ok(
+      await evaluate(
+        `!document.querySelector('[class*="rsvp"]') && document.querySelector('.venue').nextElementSibling.matches('.story-finale')`,
+      ),
+      "No RSVP and groom directions immediately precede finale",
+    );
     const venue = await evaluate(
       `(() => { const frame=document.querySelector('.venue__map'), directions=document.querySelector('.venue__directions'); let e=frame, clean=true; while(e){if(getComputedStyle(e).transform!=='none')clean=false;e=e.parentElement} const r=frame.getBoundingClientRect(); return {pin:new URL(frame.src).searchParams.get('q'),destination:new URL(directions.href).searchParams.get('destination'),clean,fits:r.width>=200&&r.left>=0&&r.right<=innerWidth}; })()`,
     );
@@ -424,64 +436,6 @@ try {
       ),
       "ESC and photo focus restoration",
     );
-    await evaluate(
-      `document.querySelector('[data-photo]').click();document.querySelector('.photo-close').click();document.querySelector('.rsvp-trigger').focus({preventScroll:true});document.querySelector('.rsvp-trigger').click()`,
-    );
-    assert.ok(
-      await evaluate(
-        `document.querySelector('.rsvp-dialog').open && !document.querySelector('.rsvp-card').checkValidity()`,
-      ),
-      "RSVP opens and requires a name",
-    );
-    const requestCount = rsvpRequests.length;
-    await evaluate(
-      `document.querySelector('[name="name"]').value='Khách thử';document.querySelector('.rsvp-card').requestSubmit()`,
-    );
-    assert.equal(
-      rsvpRequests.length,
-      requestCount,
-      "Attendance requires an event",
-    );
-    await evaluate(
-      `document.querySelector('[name="events"]').checked=true;document.querySelector('[name="events"]').dispatchEvent(new Event('change'));document.querySelector('.rsvp-card').requestSubmit();document.querySelector('.rsvp-card').dispatchEvent(new Event('submit',{cancelable:true}))`,
-    );
-    assert.ok(
-      await evaluate(
-        `document.querySelector('.rsvp-card').dataset.rsvpState==='sending' && document.querySelector('.rsvp-card__submit').disabled`,
-      ),
-      "Loading feedback and duplicate guard",
-    );
-    await until(
-      `document.querySelector('.rsvp-card').dataset.rsvpState==='success'`,
-      "email success",
-    );
-    assert.equal(
-      rsvpRequests.length,
-      requestCount + 1,
-      "Only one email request",
-    );
-    assert.equal(rsvpRequests.at(-1)["Họ và tên"], "Khách thử");
-    assert.equal(rsvpRequests.at(-1)["Số người"], "1");
-    assert.ok(rsvpRequests.at(-1)["Ngày tham dự"].includes("23/11/2026"));
-    assert.ok(
-      await evaluate(
-        `document.querySelector('.rsvp-status').textContent.includes('đã được chuyển') && !document.querySelector('.rsvp-edit').hidden`,
-      ),
-      "Confirmed success state",
-    );
-    if ([390, 1440].includes(width)) {
-      await screenshot(`${width}-rsvp-success`);
-      await evaluate(`document.querySelector('.rsvp-edit').click()`);
-      await screenshot(`${width}-rsvp`);
-    }
-    await key("Escape", "Escape", 27);
-    await delay(80);
-    assert.ok(
-      await evaluate(
-        `!document.querySelector('.rsvp-dialog').open && document.activeElement.matches('.rsvp-trigger')`,
-      ),
-      "RSVP ESC and focus restoration",
-    );
     const broken = await evaluate(
       `Promise.all([...document.querySelectorAll('main img')].map(i=>i.decode().then(()=>null,()=>i.src))).then(r=>r.filter(Boolean))`,
     );
@@ -505,7 +459,7 @@ try {
     );
     passed(
       label +
-        " · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
+        " · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
     );
   }
   for (const width of [390, 1440]) {
@@ -603,10 +557,30 @@ try {
     );
   }
   await metrics(390, 844);
+  const blockedAudio = await send("Page.addScriptToEvaluateOnNewDocument", {
+    source: `HTMLMediaElement.prototype.play=function(){return Promise.reject(new DOMException('Simulated autoplay policy','NotAllowedError'))}`,
+  });
+  await navigate(pageUrl + "?audio-blocked");
+  await key("Enter", "Enter", 13);
+  await until(
+    `document.body.dataset.invitationState==='open'`,
+    "Opening despite blocked audio",
+  );
+  assert.ok(
+    await evaluate(
+      `document.querySelector('#wedding-music').paused && document.querySelector('.music-toggle').getAttribute('aria-pressed')==='false' && document.querySelector('[data-music-status]').textContent.includes('Chạm')`,
+    ),
+    "Blocked playback remains honest and never prevents opening",
+  );
+  await send("Page.removeScriptToEvaluateOnNewDocument", {
+    identifier: blockedAudio.identifier,
+  });
+  passed(
+    "Blocked music degrades to a working manual control without blocking invitation",
+  );
   await send("Network.setCacheDisabled", { cacheDisabled: true });
   await send("Fetch.enable", {
     patterns: [
-      { urlPattern: "https://formsubmit.co/*", requestStage: "Request" },
       { urlPattern: "file:///*nm_00004.webp", requestStage: "Request" },
     ],
   });
@@ -633,87 +607,10 @@ try {
     ),
     "Late load restores URL and history defaults without jumping",
   );
-  await send("Fetch.enable", {
-    patterns: [
-      { urlPattern: "https://formsubmit.co/*", requestStage: "Request" },
-    ],
-  });
+  await send("Fetch.disable");
   await send("Network.setCacheDisabled", { cacheDisabled: false });
   passed("Late image/window load does not reapply initial fragment scrolling");
   await metrics(390, 844);
-  await navigate(pageUrl + "?rsvp-errors");
-  await evaluate(
-    `document.querySelector('.skip-link').click();document.querySelector('.rsvp-trigger').click();document.querySelector('[name="name"]').value='Khách kiểm thử';document.querySelector('[name="attendance"][value="no"]').click()`,
-  );
-  assert.ok(
-    await evaluate(
-      `document.querySelector('.rsvp-attending-fields').hidden && document.querySelector('[name="guests"]').disabled`,
-    ),
-    "Declining hides event and guest fields",
-  );
-  rsvpMock = { success: "false", message: "Service temporarily unavailable" };
-  await evaluate(`document.querySelector('.rsvp-card').requestSubmit()`);
-  await until(
-    `document.querySelector('.rsvp-card').dataset.rsvpState==='error'`,
-    "service failure",
-  );
-  assert.ok(
-    await evaluate(
-      `document.querySelector('[name="name"]').value==='Khách kiểm thử' && !document.querySelector('.rsvp-card__submit').disabled`,
-    ),
-    "Failure retains input and permits retry",
-  );
-  assert.equal(rsvpRequests.at(-1)["Số người"], "0");
-  assert.equal(rsvpRequests.at(-1)["Tham dự"], "Không thể tham dự");
-  rsvpMock = {
-    success: "true",
-    message: "We have sent an activation link to your email",
-  };
-  await evaluate(`document.querySelector('.rsvp-card').requestSubmit()`);
-  await until(
-    `document.querySelector('.rsvp-card').dataset.rsvpState==='error'`,
-    "activation state",
-  );
-  assert.ok(
-    await evaluate(
-      `document.querySelector('.rsvp-status').textContent.includes('kích hoạt')`,
-    ),
-    "Unactivated mailbox never reports success",
-  );
-  rsvpMock = { success: "true", message: "Success" };
-  await evaluate(`document.querySelector('.rsvp-card').requestSubmit()`);
-  await until(
-    `document.querySelector('.rsvp-card').dataset.rsvpState==='success'`,
-    "retry",
-  );
-  passed(
-    "RSVP provider failure, activation, decline, preserved inputs and successful retry (mocked provider)",
-  );
-  const shortTimeout = await send("Page.addScriptToEvaluateOnNewDocument", {
-    source: `let rsvpTestConfig; Object.defineProperty(window,'WEDDING_RSVP',{configurable:true,get:()=>rsvpTestConfig,set:value=>{rsvpTestConfig={...value,timeoutMs:80}}})`,
-  });
-  rsvpDelay = 600;
-  await navigate(pageUrl + "?rsvp-timeout");
-  await evaluate(
-    `document.querySelector('.skip-link').click();document.querySelector('.rsvp-trigger').click();document.querySelector('[name="name"]').value='Khách thử';document.querySelector('[name="attendance"][value="maybe"]').click();document.querySelector('.rsvp-card').requestSubmit()`,
-  );
-  await until(
-    `document.querySelector('.rsvp-card').dataset.rsvpState==='error'`,
-    "request timeout",
-  );
-  assert.ok(
-    await evaluate(
-      `document.querySelector('.rsvp-status').textContent.includes('quá lâu')`,
-    ),
-    "Timeout does not claim delivery",
-  );
-  await send("Page.removeScriptToEvaluateOnNewDocument", {
-    identifier: shortTimeout.identifier,
-  });
-  rsvpDelay = 180;
-  passed(
-    "RSVP timeout reports uncertainty without discarding input (mocked provider)",
-  );
   await send("Emulation.setEmulatedMedia", {
     features: [{ name: "prefers-reduced-motion", value: "reduce" }],
   });
@@ -785,15 +682,9 @@ try {
       "1440-opening",
       "1440-hero",
       "1440-schedule",
-      "390-rsvp",
-      "390-rsvp-success",
-      "1440-rsvp",
-      "1440-rsvp-success",
     ].map((s) => s + ".png"),
     externalWarnings: [...externalWarnings],
     browser: (await send("Browser.getVersion")).product,
-    emailVerification:
-      "Provider responses mocked. No real delivery or mailbox activation verified by this suite.",
   };
   await writeFile(
     new URL("report.json", artifactDir),

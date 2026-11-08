@@ -8,8 +8,11 @@
       name="description"
       content="Thiệp cưới Quốc Hảo và Thùy Trang. Bữa cơm thân mật ngày 23/11 và lễ thành hôn ngày 24/11/2026 tại Hưng Yên."
     />
-    <link rel="stylesheet" href="assets/invitation-shared.css?v=20261108-scroll" />
-    <link rel="stylesheet" href="assets/storytelling.css" />
+    <link
+      rel="stylesheet"
+      href="assets/invitation-shared.css?v=20261108-music"
+    />
+    <link rel="stylesheet" href="assets/storytelling.css?v=20261108-music" />
     <link rel="stylesheet" href="assets/garden.css" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -154,9 +157,9 @@
                 >Tức ngày 15 tháng 10 năm Bính Ngọ</span
               >
             </p>
-            <p>Giờ đón khách sẽ được cập nhật.</p>
             <p class="wedding-schedule__place">
-              <strong>Ao Hồ thôn Rừng</strong><br />Dị Sử, Mỹ Hào, Hưng Yên
+              <strong>Gia đình nhà gái</strong><br />Tổ dân phố Rừng, Dị Sử, Mỹ
+              Hào, Hưng Yên
             </p>
           </article>
           <article class="wedding-schedule__event reveal">
@@ -170,7 +173,6 @@
                 >Tức ngày 16 tháng 10 năm Bính Ngọ</span
               >
             </p>
-            <p>Giờ làm lễ sẽ được cập nhật.</p>
             <p class="wedding-schedule__place">
               <strong>Gia đình nhà trai</strong><br />Thôn Hiển Dương, Dương
               Quang, Mỹ Hào, Hưng Yên
@@ -193,29 +195,7 @@
           </div>
         </div>
       </section>
-      <section class="venue" id="nha-chu-re" aria-labelledby="venue-title">
-        <div class="venue__copy reveal">
-          <p class="eyebrow">ĐƯỜNG ĐẾN LỄ THÀNH HÔN</p>
-          <h2 id="venue-title">Nhà chú rể</h2>
-          <p>Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên</p>
-          <a
-            class="venue__directions"
-            href="https://www.google.com/maps/dir/?api=1&amp;destination=20.9388189%2C106.1072559"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Chỉ đường trên Google Maps <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <iframe
-          class="venue__map"
-          title="Bản đồ Google Maps đến nhà chú rể"
-          src="https://www.google.com/maps?q=20.9388189%2C106.1072559&amp;z=16&amp;output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer"
-          allowfullscreen
-        ></iframe>
-      </section>
+
       <section class="story" aria-label="Câu chuyện minh họa">
         <div class="story__copy reveal">
           <p class="eyebrow">CHUYỆN CỦA CHÚNG MÌNH</p>
@@ -428,6 +408,29 @@
           </button>
         </div>
       </section>
+      <section class="venue" id="nha-chu-re" aria-labelledby="venue-title">
+        <div class="venue__copy reveal">
+          <p class="eyebrow">ĐƯỜNG ĐẾN LỄ THÀNH HÔN</p>
+          <h2 id="venue-title">Nhà chú rể</h2>
+          <p>Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên</p>
+          <a
+            class="venue__directions"
+            href="https://www.google.com/maps/dir/?api=1&amp;destination=20.9388189%2C106.1072559"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chỉ đường trên Google Maps <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <iframe
+          class="venue__map"
+          title="Bản đồ Google Maps đến nhà chú rể"
+          src="https://www.google.com/maps?q=20.9388189%2C106.1072559&amp;z=16&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          allowfullscreen
+        ></iframe>
+      </section>
       <section class="story-finale" aria-label="Lời cảm ơn của hai gia đình">
         <p class="story-eyebrow reveal">QUỐC HẢO &amp; THÙY TRANG</p>
         <h2 class="reveal">Một lời hẹn giữa vườn xanh.</h2>
@@ -435,141 +438,42 @@
           Hai gia đình chân thành cảm ơn.<br />Sự hiện diện của quý vị là niềm
           vinh hạnh cho gia đình chúng tôi.
         </p>
-        <button class="rsvp-trigger reveal" type="button">
-          Gửi lời hồi đáp
-        </button>
       </section>
+      <button
+        class="music-toggle"
+        type="button"
+        aria-controls="wedding-music"
+        aria-pressed="false"
+        aria-label="Bật nhạc nền Young And Beautiful"
+        hidden
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          width="19"
+          height="19"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+        >
+          <path d="M9 17V6l11-3v11M9 9l11-3" />
+          <ellipse cx="6" cy="17.5" rx="3" ry="2.5" />
+          <ellipse cx="17" cy="14.5" rx="3" ry="2.5" />
+        </svg>
+        <span class="music-toggle__label">Bật nhạc</span>
+      </button>
+      <p class="sr-only" role="status" aria-live="polite" data-music-status></p>
     </main>
+    <audio
+      id="wedding-music"
+      src="assets/audio/young-and-beautiful.mp3"
+      preload="none"
+      loop
+    ></audio>
     <footer class="invitation-footer">
       QUỐC HẢO &amp; THÙY TRANG · <a href="#noi-dung">Về đầu trang ↑</a>
     </footer>
-    <dialog
-      class="rsvp-dialog"
-      aria-labelledby="rsvp-title"
-      aria-describedby="rsvp-description"
-    >
-      <form class="rsvp-card" data-rsvp-state="idle">
-        <button class="rsvp-close" type="button" aria-label="Đóng phần hồi đáp">
-          Đóng ×
-        </button>
-        <p class="eyebrow">HẸN GẶP BẠN</p>
-        <h2 id="rsvp-title">Bạn sẽ đến chứ?</h2>
-        <p id="rsvp-description">
-          Một lời hồi đáp nhỏ để hai gia đình chuẩn bị đón bạn chu đáo hơn.
-        </p>
-        <div class="rsvp-fields">
-          <label
-            ><span>Họ và tên <span aria-hidden="true">*</span></span
-            ><input
-              name="name"
-              autocomplete="name"
-              required
-              maxlength="100"
-              placeholder="Tên của bạn"
-          /></label>
-          <fieldset class="rsvp-attendance">
-            <legend>Bạn có thể chung vui cùng chúng mình chứ?</legend>
-            <label
-              ><input type="radio" name="attendance" value="yes" checked /> Mình
-              sẽ đến</label
-            >
-            <label
-              ><input type="radio" name="attendance" value="no" /> Rất tiếc,
-              mình không thể đến</label
-            >
-            <label
-              ><input type="radio" name="attendance" value="maybe" /> Mình sẽ
-              xác nhận sau</label
-            >
-          </fieldset>
-          <div class="rsvp-attending-fields">
-            <fieldset class="rsvp-events">
-              <legend>
-                Ngày bạn tham dự <span aria-hidden="true">*</span>
-              </legend>
-              <label
-                ><input
-                  type="checkbox"
-                  name="events"
-                  value="23/11/2026 — Bữa cơm thân mật"
-                />
-                23/11 · Bữa cơm thân mật</label
-              >
-              <label
-                ><input
-                  type="checkbox"
-                  name="events"
-                  value="24/11/2026 — Lễ thành hôn"
-                />
-                24/11 · Lễ thành hôn</label
-              >
-            </fieldset>
-            <label
-              >Số người tham dự, tính cả bạn<select name="guests">
-                <option value="1">1 người</option>
-                <option value="2">2 người</option>
-                <option value="3">3 người</option>
-                <option value="4">4 người</option>
-                <option value="5">5 người</option>
-                <option value="6">6 người</option>
-                <option value="7">7 người</option>
-                <option value="8">8 người</option>
-                <option value="9">9 người</option>
-                <option value="10">10 người</option>
-              </select></label
-            >
-          </div>
-          <label
-            ><span
-              >Email của bạn
-              <span class="field-optional">(không bắt buộc)</span></span
-            ><input
-              name="email"
-              type="email"
-              autocomplete="email"
-              maxlength="254"
-              placeholder="Để gia đình có thể trả lời bạn"
-          /></label>
-          <label
-            ><span
-              >Lời nhắn gửi hai bạn
-              <span class="field-optional">(không bắt buộc)</span></span
-            ><textarea
-              name="message"
-              rows="3"
-              maxlength="1500"
-              placeholder="Một lời chúc, một lời hẹn…"
-            ></textarea>
-          </label>
-          <div class="rsvp-honeypot" aria-hidden="true">
-            <label
-              >Để trống ô này<input
-                name="_honey"
-                tabindex="-1"
-                autocomplete="off"
-            /></label>
-          </div>
-          <p class="rsvp-privacy">
-            Thông tin bạn nhập được chuyển qua FormSubmit đến email của gia đình
-            để sắp xếp đón khách.
-          </p>
-        </div>
-        <button class="rsvp-card__submit" type="submit">
-          Gửi lời hồi đáp <span aria-hidden="true">↗</span>
-        </button>
-        <p
-          class="rsvp-status"
-          role="status"
-          aria-live="polite"
-          tabindex="-1"
-        ></p>
-        <button class="rsvp-edit" type="button" hidden>
-          Gửi một hồi đáp khác
-        </button>
-      </form>
-    </dialog>
-    <script src="assets/rsvp-config.js"></script>
-    <script src="assets/invitation.js?v=20261108-scroll"></script>
-    <script src="assets/rsvp.js"></script>
+    <script src="assets/music.js?v=20261108-music"></script>
+    <script src="assets/invitation.js?v=20261108-music"></script>
   </body>
 </html>

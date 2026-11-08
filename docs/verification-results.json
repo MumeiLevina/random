@@ -1,18 +1,17 @@
 {
   "results": [
     "Legacy URL redirects to the single Vườn Sương invitation",
-    "320x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "375x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "390x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "768x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "1440x900 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "844x390 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
-    "375x568 · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
+    "320x900 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "375x900 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "390x900 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "768x900 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "1440x900 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "844x390 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
+    "375x568 · opening, duplicate input, focus, layout, data, map, reveal, album, music, reload",
     "390px · initial fragment, bottom reload, guest scrolling and history back",
     "1440px · initial fragment, bottom reload, guest scrolling and history back",
+    "Blocked music degrades to a working manual control without blocking invitation",
     "Late image/window load does not reapply initial fragment scrolling",
-    "RSVP provider failure, activation, decline, preserved inputs and successful retry (mocked provider)",
-    "RSVP timeout reports uncertainty without discarding input (mocked provider)",
     "Reduced motion opens immediately, readable text, no particles",
     "Canceled / unsupported animations still release content",
     "Runtime error fails open",
@@ -27,13 +26,8 @@
     "1440-envelope.png",
     "1440-opening.png",
     "1440-hero.png",
-    "1440-schedule.png",
-    "390-rsvp.png",
-    "390-rsvp-success.png",
-    "1440-rsvp.png",
-    "1440-rsvp-success.png"
+    "1440-schedule.png"
   ],
   "externalWarnings": [],
-  "browser": "Chrome/156.0.8078.80",
-  "emailVerification": "Provider responses mocked. No real delivery or mailbox activation verified by this suite."
+  "browser": "Chrome/156.0.8078.80"
 }

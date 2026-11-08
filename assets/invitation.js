@@ -182,23 +182,7 @@
       photoOpener?.focus({ preventScroll: true }),
     );
 
-    const rsvp = document.querySelector(".rsvp-dialog");
-    if (rsvp) {
-      let rsvpOpener;
-      document.querySelectorAll(".rsvp-trigger").forEach((button) =>
-        button.addEventListener("click", () => {
-          rsvpOpener = button;
-          rsvp.showModal();
-        }),
-      );
-      rsvp
-        .querySelector(".rsvp-close")
-        .addEventListener("click", () => rsvp.close());
-      rsvp.addEventListener("close", () =>
-        rsvpOpener?.focus({ preventScroll: true }),
-      );
-    }
-    [photoDialog, rsvp].filter(Boolean).forEach((dialog) => {
+    [photoDialog].forEach((dialog) => {
       dialog.addEventListener("click", (event) => {
         const bounds = dialog.getBoundingClientRect();
         if (

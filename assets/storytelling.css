@@ -217,15 +217,7 @@
 .story-finale h2 {
   max-width: 17ch;
 }
-.story-finale .rsvp-trigger {
-  margin-top: 2rem;
-  background: var(--paper);
-  color: var(--green);
-  font-size: 0.8rem;
-}
-.story-finale .rsvp-trigger:hover {
-  background: var(--sage);
-}
+
 .finale-petals {
   position: absolute;
   inset: 0;
@@ -389,11 +381,6 @@ body:has(dialog[open]) {
   .story-finale::after {
     inset: 0.75rem;
     background-size: 100px;
-  }
-  .rsvp-trigger {
-    white-space: normal;
-    line-height: 1.5;
-    max-width: 100%;
   }
   .photo-caption {
     gap: 0.6rem;

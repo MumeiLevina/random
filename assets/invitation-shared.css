@@ -36,6 +36,41 @@ body.gate-active {
   width: 100%;
   overflow: hidden;
 }
+.music-toggle {
+  position: fixed;
+  z-index: 40;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gold);
+  background: var(--paper);
+  color: var(--green);
+  box-shadow: 0 4px 20px #10282020;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.music-toggle:hover {
+  background: #e3e9df;
+}
+.music-toggle:active {
+  transform: scale(0.97);
+}
+.music-toggle[data-music-state="playing"] {
+  background: var(--green);
+  color: var(--paper);
+}
+.music-toggle[hidden],
+body:not(.invitation-open) .music-toggle {
+  display: none;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -180,34 +215,6 @@ h1:focus {
     transform: translate3d(7vw, 102vh, 0) rotate(250deg);
   }
 }
-.rsvp-trigger,
-.rsvp-card__submit {
-  min-height: 48px;
-  padding: 1rem 1.7rem;
-  background: var(--green);
-  color: var(--paper);
-  border: 1px solid var(--gold);
-  cursor: pointer;
-  transition:
-    background 0.25s,
-    transform 0.25s;
-}
-.rsvp-trigger:hover,
-.rsvp-card__submit:hover {
-  background: #285346;
-}
-.rsvp-trigger:active,
-.rsvp-card__submit:active {
-  transform: scale(0.98);
-}
-.rsvp-dialog {
-  width: min(580px, calc(100% - 2rem));
-  max-height: 90dvh;
-  border: 1px solid var(--gold);
-  padding: 0;
-  color: var(--green);
-  background: var(--paper);
-}
 dialog::backdrop {
   background: rgba(8, 24, 18, 0.87);
 }
@@ -223,152 +230,6 @@ dialog[open] {
     opacity: 1;
     transform: none;
   }
-}
-.rsvp-card {
-  padding: clamp(2rem, 6vw, 3.5rem);
-  position: relative;
-}
-.rsvp-card h2 {
-  font-size: clamp(2.4rem, 7vw, 3.6rem);
-  margin: 0.8rem 0 1rem;
-}
-.rsvp-card p {
-  font-size: 0.82rem;
-}
-.rsvp-card label {
-  display: grid;
-  gap: 0.6rem;
-  margin-top: 1rem;
-  font-size: 0.75rem;
-}
-.rsvp-card input,
-.rsvp-card select,
-.rsvp-card textarea {
-  width: 100%;
-  min-height: 48px;
-  border: 1px solid #a1b0a0;
-  background: #fffdf7;
-  padding: 0.85rem;
-  color: var(--green);
-  border-radius: 0;
-}
-.rsvp-card textarea {
-  font: inherit;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  resize: vertical;
-  min-height: 100px;
-}
-.rsvp-card fieldset {
-  padding: 0;
-  margin: 1.5rem 0 0;
-  border: 0;
-  min-width: 0;
-}
-.rsvp-card legend {
-  font-size: 0.75rem;
-  line-height: 1.8;
-  margin-bottom: 0.6rem;
-}
-.rsvp-card fieldset label {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  margin-top: 0.4rem;
-  min-height: 44px;
-  padding: 0.5rem 0.65rem;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  font-size: 0.75rem;
-  line-height: 1.7;
-}
-.rsvp-card fieldset label:has(input:checked) {
-  background: #e3e9df;
-  border-color: #8a9f8b;
-}
-.rsvp-card fieldset input {
-  width: 18px;
-  height: 18px;
-  min-height: 0;
-  margin: 0;
-  flex-shrink: 0;
-  accent-color: var(--green);
-}
-.rsvp-card fieldset input:focus-visible {
-  outline: 2px solid #8d744b;
-  outline-offset: 3px;
-}
-.rsvp-card .field-optional {
-  font-size: 0.65rem;
-  color: #657263;
-  font-weight: 400;
-}
-.rsvp-card .rsvp-privacy {
-  font-size: 0.64rem;
-  line-height: 1.8;
-  color: #657263;
-  margin: 1.5rem 0 0;
-}
-.rsvp-honeypot {
-  display: none;
-}
-.rsvp-card__submit {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.rsvp-card__submit:disabled {
-  opacity: 0.65;
-  cursor: wait;
-}
-.rsvp-card[data-rsvp-state="success"] .rsvp-fields,
-.rsvp-card[data-rsvp-state="success"] .rsvp-card__submit {
-  display: none;
-}
-.rsvp-card[data-rsvp-state="success"] .rsvp-status {
-  color: var(--green);
-  border-block: 1px solid var(--line);
-  padding: 1.5rem 0;
-  font-size: 1rem;
-  font-family: var(--serif);
-}
-.rsvp-edit {
-  padding: 0.7rem 0;
-  min-height: 44px;
-  color: var(--green);
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.75rem;
-}
-.rsvp-status:focus {
-  outline: none;
-}
-.rsvp-attending-fields[hidden],
-.rsvp-edit[hidden] {
-  display: none;
-}
-.rsvp-card__submit {
-  width: 100%;
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
-}
-.rsvp-close {
-  position: absolute;
-  right: 0.7rem;
-  top: 0.4rem;
-  min-height: 44px;
-  padding: 0.5rem;
-  border: 0;
-  background: transparent;
-  color: var(--green);
-  cursor: pointer;
-}
-.rsvp-status {
-  min-height: 1.5em;
-  color: #83504f;
 }
 .invitation-footer {
   text-align: center;
