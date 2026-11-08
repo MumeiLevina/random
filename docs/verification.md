@@ -2,7 +2,7 @@
 
 Kết quả chi tiết: [verification-results.json](verification-results.json). **19 nhóm kiểm tra đạt**. Trình duyệt kiểm thử: Chromium trên Windows, 08/11/2026.
 
-Bổ sung sau khi sửa lịch ngày 23/11 và tên thiệp: kiểm tra riêng đạt trên 320/375/390/768/1440px. Xác nhận có đúng hai link cho hai địa điểm, nhà gái tìm theo địa chỉ Ao Hồ, nhà trai dùng cùng tọa độ bản đồ ngày 24/11; địa chỉ Hiển Dương được giữ nguyên. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”. Các link đủ vùng chạm 44px và không gây tràn ngang.
+Ngày 23/11 hiện chỉ hiển thị nhà gái với link bản đồ tìm theo địa chỉ Ao Hồ; mục nhà trai trùng lặp đã được bỏ. Nhà trai ngày 24/11 và bản đồ Hiển Dương gần cuối trang được giữ nguyên. Bộ kiểm thử kiểm tra ngày 23 có đúng một link và không có mục nhà trai. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”.
 
 Kiểm thử các viewport 320, 375, 390, 768, 1440px, landscape 844×390 và màn hình thấp 375×568. Kiểm tra mở bằng bàn phím/chạm/chuột, không mở lặp, focus, tên tiếng Việt, dữ liệu cưới, ảnh thật, lightbox và không tràn ngang.
 
