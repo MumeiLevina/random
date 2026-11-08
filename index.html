@@ -1,236 +1,415 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Thiệp cưới Quốc Hảo &amp; Thùy Trang | Vườn Sương</title><meta name="description" content="Thiệp cưới Quốc Hảo và Thùy Trang. Bữa cơm thân mật ngày 23/11 và lễ thành hôn ngày 24/11/2026 tại Hưng Yên."><link rel="stylesheet" href="assets/invitation-shared.css"><style>
-:root{--green:#173b31;--paper:#edf0e9;--rose:#b85b62;--line:rgba(23,59,49,.18)}body{background:var(--paper);color:var(--green);font-family:'Be Vietnam Pro',sans-serif}.hero{min-height:100dvh;position:relative;color:#fff;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}.hero__photo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,28,22,.72),rgba(8,28,22,.1)),url('assets/images/couple-garden.png') center 58%/cover;animation:breathe 14s ease-out both}.hero__content{position:relative;z-index:2;grid-column:1;padding:18vh 7vw 8vh;display:flex;flex-direction:column;justify-content:space-between}.eyebrow{font-size:.66rem;letter-spacing:.22em;font-weight:500}.hero h1{font:500 clamp(4.8rem,10vw,10rem)/.75 'Newsreader',serif;letter-spacing:-.055em;margin:2rem 0}.hero h1 span{display:block}.hero h1 i{color:#ef9898;font-weight:400}.hero__date{display:flex;align-items:center;gap:1rem;font-size:.74rem;letter-spacing:.13em}.hero__date:before{content:'';width:55px;height:1px;background:rgba(255,255,255,.7)}@keyframes breathe{from{transform:scale(1.05)}to{transform:scale(1)}}.story{padding:12rem 7vw;display:grid;grid-template-columns:.9fr 1.2fr;gap:9vw;align-items:center}.story__copy h2{font:500 clamp(3.3rem,6vw,6.8rem)/.92 'Newsreader',serif;letter-spacing:-.04em;margin:.4rem 0 2rem}.story__copy>p{max-width:48ch;line-height:1.8;color:#5d7169}.story img{width:100%;aspect-ratio:4/3;object-fit:cover}.promise{padding:5rem 7vw 12rem;display:grid;grid-template-columns:1.2fr .8fr;gap:3vw;align-items:end}.promise blockquote{font:500 clamp(2.8rem,5vw,6rem)/1 'Newsreader',serif;margin:0}.promise blockquote i{color:var(--rose)}.promise__detail{border-top:1px solid var(--line);padding-top:1.5rem;line-height:1.8;color:#5d7169}.invitation-footer{background:var(--green);color:var(--paper);border-top:1px solid rgba(255,255,255,.15)}
-@media(max-width:720px){.hero{grid-template-columns:1fr}.hero__photo{background-position:58% center}.hero__content{grid-column:1;padding:18vh 1.3rem 8vh;background:linear-gradient(90deg,rgba(8,28,22,.55),transparent)}.hero h1{font-size:5rem}.story{padding:7rem 1.3rem;grid-template-columns:1fr}.story img{order:-1}.promise{padding:2rem 1.3rem 7rem;grid-template-columns:1fr;gap:3rem}}
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Thiệp cưới Quốc Hảo &amp; Thùy Trang | Vườn Sương</title>
+    <meta
+      name="description"
+      content="Thiệp cưới Quốc Hảo và Thùy Trang. Bữa cơm thân mật ngày 23/11 và lễ thành hôn ngày 24/11/2026 tại Hưng Yên."
+    />
+    <link rel="stylesheet" href="assets/invitation-shared.css" />
+    <link rel="stylesheet" href="assets/storytelling.css" />
+    <link rel="stylesheet" href="assets/garden.css" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="assets/images/couple-garden.webp" />
+    <meta name="theme-color" content="#173B31" />
+    <meta
+      property="og:title"
+      content="Quốc Hảo &amp; Thùy Trang · Vườn Sương"
+    />
+    <meta
+      property="og:description"
+      content="Trân trọng kính mời · 23–24.11.2026 · Hưng Yên"
+    />
+    <meta property="og:image" content="assets/images/couple-garden.webp" />
+    <noscript
+      ><style>
+        .invitation-gate {
+          display: none;
+        }
+      </style></noscript
+    >
+  </head>
+  <body class="theme-garden" data-particles="true">
+    <a class="skip-link" href="#noi-dung">Đến nội dung thiệp</a>
+    <div
+      class="invitation-gate"
+      role="dialog"
+      aria-labelledby="gate-title"
+      data-state="closed"
+    >
+      <div class="gate__mist" aria-hidden="true"></div>
+      <div class="gate__lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span
+        ><span></span>
+      </div>
+      <div class="gate__content">
+        <p class="gate__edition">
+          VƯỜN SƯƠNG <span aria-hidden="true">—</span> THIỆP BÁO HỶ
+        </p>
+        <p class="gate__intro" id="gate-title">
+          Một lời mời, <i>trọn yêu thương.</i>
+        </p>
+        <div
+          class="envelope"
+          aria-label="Phong bì giấy ivory, niêm phong H và T"
+        >
+          <div class="envelope__back" aria-hidden="true"></div>
+          <div class="envelope__letter" aria-hidden="true">
+            <span>TRÂN TRỌNG KÍNH MỜI</span
+            ><strong>Quốc Hảo<br /><i>&amp;</i><br />Thùy Trang</strong
+            ><span>23 — 24 · 11 · 2026</span>
+          </div>
+          <div class="envelope__front">
+            <p class="gate__label">TRÂN TRỌNG KÍNH MỜI</p>
+            <h1 class="couple-title">
+              <span class="couple-name">Quốc Hảo</span
+              ><i class="couple-connector">&amp;</i
+              ><span class="couple-name">Thùy Trang</span>
+            </h1>
+            <p class="gate__date">23 — 24 · 11 · 2026</p>
+            <span
+              class="envelope__botanical envelope__botanical--left"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="envelope__botanical envelope__botanical--right"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <div class="envelope__flap" aria-hidden="true"></div>
+          <span class="gate__monogram" aria-hidden="true"
+            >H<span>&amp;</span>T</span
+          >
+        </div>
+        <button class="gate__open" type="button" data-open-invitation>
+          <span>Chạm để mở thiệp</span><span aria-hidden="true">↗</span>
+        </button>
+        <p class="gate__footnote">Gửi bạn một lời hẹn giữa vườn xanh.</p>
+        <p class="sr-only" role="status" data-gate-status></p>
+      </div>
+    </div>
+    <main id="noi-dung" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__frame" aria-hidden="true"></div>
+        <span class="hero__signature" aria-hidden="true">H &amp; T</span>
+        <div
+          class="hero__photo"
+          role="img"
+          aria-label="Ảnh minh họa đôi uyên ương giữa khu vườn"
+        ></div>
+        <div class="hero__content">
+          <p class="eyebrow">TRÂN TRỌNG BÁO HỶ</p>
+          <h1 class="couple-title" id="hero-title" tabindex="-1">
+            <span class="couple-name">Quốc Hảo</span
+            ><i class="couple-connector">&amp;</i
+            ><span class="couple-name">Thùy Trang</span>
+          </h1>
+          <p class="hero__invitation">
+            Một lời hẹn giữa vườn xanh.<br />Trân trọng mời bạn đến chung vui
+            cùng hai gia đình.
+          </p>
+          <div class="hero__date">
+            <p class="hero__wedding-date">
+              23 — 24 · 11 · 2026 <span>HƯNG YÊN</span>
+            </p>
+            <nav class="hero__links" aria-label="Thông tin ngày cưới">
+              <a href="#lich-cuoi"
+                >Xem lịch cưới <span aria-hidden="true">↓</span></a
+              >
+              <a href="#nha-chu-re"
+                >Đường đến nhà chú rể <span aria-hidden="true">↓</span></a
+              >
+            </nav>
+          </div>
+        </div>
+      </section>
+      <section
+        class="wedding-schedule"
+        id="lich-cuoi"
+        aria-labelledby="wedding-schedule-title"
+      >
+        <header>
+          <p class="eyebrow">TRÂN TRỌNG KÍNH MỜI</p>
+          <h2 id="wedding-schedule-title">Lịch cưới</h2>
+          <p>
+            Trân trọng kính mời quý vị tới dự bữa cơm thân mật mừng lễ thành hôn
+            của hai con chúng tôi.
+          </p>
+        </header>
+        <div class="wedding-schedule__events">
+          <article class="wedding-schedule__event reveal">
+            <span class="event-number" aria-hidden="true"
+              >23<span>THÁNG 11</span></span
+            >
+            <h3>Bữa cơm thân mật</h3>
+            <p>
+              <time datetime="2026-11-23">Thứ Hai, 23/11/2026</time>
+              <span class="wedding-schedule__lunar"
+                >Tức ngày 15 tháng 10 năm Bính Ngọ</span
+              >
+            </p>
+            <p>Giờ đón khách sẽ được cập nhật.</p>
+            <p class="wedding-schedule__place">
+              <strong>Ao Hồ thôn Rừng</strong><br />Dị Sử, Mỹ Hào, Hưng Yên
+            </p>
+          </article>
+          <article class="wedding-schedule__event reveal">
+            <span class="event-number" aria-hidden="true"
+              >24<span>THÁNG 11</span></span
+            >
+            <h3>Lễ thành hôn</h3>
+            <p>
+              <time datetime="2026-11-24">Thứ Ba, 24/11/2026</time>
+              <span class="wedding-schedule__lunar"
+                >Tức ngày 16 tháng 10 năm Bính Ngọ</span
+              >
+            </p>
+            <p>Giờ làm lễ sẽ được cập nhật.</p>
+            <p class="wedding-schedule__place">
+              <strong>Gia đình nhà trai</strong><br />Thôn Hiển Dương, Dương
+              Quang, Mỹ Hào, Hưng Yên
+            </p>
+            <a href="#nha-chu-re">Xem bản đồ nhà trai</a>
+          </article>
+        </div>
+        <div class="family-heading reveal">
+          <span aria-hidden="true">❧</span>
+          <p>Hai gia đình, một ngày vui</p>
+        </div>
+        <div class="wedding-schedule__families">
+          <div class="reveal">
+            <h3>Nhà trai</h3>
+            <p>Đặng Đình Mười<br />Nguyễn Thị Duyên</p>
+          </div>
+          <div class="reveal">
+            <h3>Nhà gái</h3>
+            <p>Hàn Ngọc Tú<br />Nguyễn Thị Kim Oanh</p>
+          </div>
+        </div>
+      </section>
+      <section class="venue" id="nha-chu-re" aria-labelledby="venue-title">
+        <div class="venue__copy reveal">
+          <p class="eyebrow">ĐƯỜNG ĐẾN LỄ THÀNH HÔN</p>
+          <h2 id="venue-title">Nhà chú rể</h2>
+          <p>Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên</p>
+          <a
+            class="venue__directions"
+            href="https://www.google.com/maps/dir/?api=1&amp;destination=20.9388189%2C106.1072559"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chỉ đường trên Google Maps <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <iframe
+          class="venue__map"
+          title="Bản đồ Google Maps đến nhà chú rể"
+          src="https://www.google.com/maps?q=20.9388189%2C106.1072559&amp;z=16&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section class="story" aria-label="Câu chuyện minh họa">
+        <div class="story__copy reveal">
+          <p class="eyebrow">CHUYỆN CỦA CHÚNG MÌNH</p>
+          <p class="sample-note">Lời kể minh họa · chờ hai bạn xác nhận</p>
+          <h2>Từ hôm nay,<br />mình gọi nhau là nhà.</h2>
+          <p>
+            Sau những ngày cùng nhau đi qua bình thường và rực rỡ, chúng mình
+            chọn một ngày đẹp để bắt đầu chương mới.
+          </p>
+        </div>
+        <img
+          class="reveal"
+          src="assets/images/holding-hands.webp"
+          alt="Ảnh minh họa cô dâu và chú rể nắm tay nhau"
+          loading="lazy"
+          width="1536"
+          height="1024"
+        />
+      </section>
+      <section class="promise">
+        <blockquote class="reveal">
+          “Có những cuộc gặp gỡ khiến mọi ngày sau đó đều trở nên
+          <i>đáng nhớ.</i>”
+        </blockquote>
+        <div class="promise__detail reveal">
+          <p>
+            Chúng mình rất mong được đón bạn đến chung vui, cùng chứng kiến
+            khoảnh khắc hai gia đình trở thành một.
+          </p>
+        </div>
+      </section>
 
-.hero__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1rem;
-}
-.hero__links a {
-  display: inline-flex;
-  align-items: center;
-  gap: .6rem;
-  min-height: 44px;
-  text-decoration: underline;
-  text-underline-offset: .35em;
-}
-.wedding-schedule {
-  padding: clamp(4rem, 9vw, 8rem) max(1.3rem, 7vw);
-  background: var(--paper);
-}
-.wedding-schedule header {
-  max-width: 36rem;
-  margin: 0 auto 2rem;
-  text-align: center;
-}
-.wedding-schedule h2 {
-  margin: .5rem 0 1rem;
-  font: 500 clamp(2.9rem, 6vw, 5.5rem)/1.08 'Newsreader', Georgia, serif;
-}
-.wedding-schedule header p { line-height: 1.75; }
-.wedding-schedule__events,
-.wedding-schedule__families {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  max-width: 68rem;
-  margin: 0 auto;
-}
-.wedding-schedule__event {
-  padding: clamp(1.4rem, 4vw, 3rem);
-  border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  background: #f7f8f4;
-}
-.wedding-schedule__event h3 {
-  margin: 0 0 1rem;
-  font: 500 clamp(2rem, 3.2vw, 3.2rem)/1.1 'Newsreader', Georgia, serif;
-}
-.wedding-schedule__event p,
-.wedding-schedule__families p { line-height: 1.7; }
-.wedding-schedule__event time { font-weight: 600; }
-.wedding-schedule__lunar {
-  display: block;
-  color: #53675e;
-  font-size: .88rem;
-}
-.wedding-schedule__place { margin: 1.25rem 0 0; }
-.wedding-schedule__event a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  text-decoration: underline;
-  text-underline-offset: .25em;
-}
-.wedding-schedule__families {
-  margin-top: 2rem;
-  text-align: center;
-}
-.wedding-schedule__families h3 { margin: 0; }
-.wedding-schedule__families p { margin: .6rem 0 0; }
-.venue {
-  display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-  align-items: center;
-  gap: clamp(2rem, 6vw, 6rem);
-  padding: clamp(4rem, 9vw, 9rem) 7vw;
-  background: var(--green);
-  color: var(--paper);
-}
-.venue .eyebrow { color: #f5a5a6; }
-.venue h2 {
-  margin: .65rem 0 1rem;
-  font: 500 clamp(3rem, 5.5vw, 6rem)/1.1 'Newsreader', Georgia, serif;
-}
-.venue__copy > p:not(.eyebrow) {
-  max-width: 38ch;
-  margin: 0;
-  line-height: 1.75;
-}
-.venue__directions {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .65rem;
-  min-height: 48px;
-  margin-top: 1.5rem;
-  padding: .85rem 1.25rem;
-  border-radius: 999px;
-  background: #f5a5a6;
-  color: #311a1c;
-  font-size: .8rem;
-  font-weight: 600;
-  text-align: center;
-}
-.venue__directions:hover { background: #ffc3c1; }
-.venue__map {
-  display: block;
-  width: 100%;
-  height: clamp(16rem, 34vw, 25rem);
-  border: 1px solid rgba(237, 240, 233, .35);
-  border-radius: 1.25rem;
-  background: var(--paper);
-}
-@media (max-width: 720px) {
-  .wedding-schedule__events { grid-template-columns: 1fr; }
-  .venue {
-    grid-template-columns: minmax(0, 1fr);
-    padding-inline: 1.3rem;
-  }
-}
-</style><link rel="stylesheet" href="assets/storytelling.css">
-<noscript><style>.invitation-gate { display: none; }</style></noscript>
-</head><body class="theme-garden" data-particles="true">
-<div class="invitation-gate" role="dialog" aria-label="Mở thiệp cưới">
-  <div class="gate__content">
-    <span class="gate__monogram">H&amp;T</span>
-    <p class="gate__label">TRÂN TRỌNG KÍNH MỜI</p>
-    <h1 class="couple-title"><span class="couple-name">Quốc Hảo</span><i class="couple-connector">&amp;</i><span class="couple-name">Thùy Trang</span></h1>
-    <p class="gate__date">23–24.11.2026</p>
-    <button class="gate__open" type="button" data-open-invitation>Mở thiệp</button>
-  </div>
-</div>
-<main>
-<section class="hero">
-  <div class="hero__photo"></div>
-  <div class="hero__content">
-    <p class="eyebrow">TRÂN TRỌNG BÁO HỶ</p>
-    <h1 class="couple-title"><span class="couple-name">Quốc Hảo</span><i class="couple-connector">&amp;</i><span class="couple-name">Thùy Trang</span></h1>
-    <div class="hero__date">
-      <nav class="hero__links" aria-label="Thông tin ngày cưới">
-        <a href="#lich-cuoi">Xem lịch cưới <span aria-hidden="true">↓</span></a>
-        <a href="#nha-chu-re">Đường đến nhà chú rể <span aria-hidden="true">↓</span></a>
-      </nav>
-    </div>
-  </div>
-</section>
-<section class="wedding-schedule" id="lich-cuoi" aria-labelledby="wedding-schedule-title">
-  <header>
-    <p class="eyebrow">TRÂN TRỌNG KÍNH MỜI</p>
-    <h2 id="wedding-schedule-title">Lịch cưới</h2>
-    <p>Trân trọng kính mời quý vị tới dự bữa cơm thân mật mừng lễ thành hôn của hai con chúng tôi.</p>
-  </header>
-  <div class="wedding-schedule__events">
-    <article class="wedding-schedule__event">
-      <h3>Bữa cơm thân mật</h3>
-      <p>
-        <time datetime="2026-11-23">Thứ Hai, 23/11/2026</time>
-        <span class="wedding-schedule__lunar">Tức ngày 15 tháng 10 năm Bính Ngọ</span>
-      </p>
-      <p>Giờ đón khách sẽ được cập nhật.</p>
-      <p class="wedding-schedule__place"><strong>Ao Hồ thôn Rừng</strong><br>Dị Sử, Mỹ Hào, Hưng Yên</p>
-    </article>
-    <article class="wedding-schedule__event">
-      <h3>Lễ thành hôn</h3>
-      <p>
-        <time datetime="2026-11-24">Thứ Ba, 24/11/2026</time>
-        <span class="wedding-schedule__lunar">Tức ngày 16 tháng 10 năm Bính Ngọ</span>
-      </p>
-      <p>Giờ làm lễ sẽ được cập nhật.</p>
-      <p class="wedding-schedule__place"><strong>Gia đình nhà trai</strong><br>Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên</p>
-      <a href="#nha-chu-re">Xem bản đồ nhà trai</a>
-    </article>
-  </div>
-  <div class="wedding-schedule__families">
-    <div>
-      <h3>Nhà trai</h3>
-      <p>Đặng Đình Mười<br>Nguyễn Thị Duyên</p>
-    </div>
-    <div>
-      <h3>Nhà gái</h3>
-      <p>Hàn Ngọc Tú<br>Nguyễn Thị Kim Oanh</p>
-    </div>
-  </div>
-</section>
-<section class="venue" id="nha-chu-re" aria-labelledby="venue-title">
-  <div class="venue__copy">
-    <p class="eyebrow">ĐƯỜNG ĐẾN LỄ THÀNH HÔN</p>
-    <h2 id="venue-title">Nhà chú rể</h2>
-    <p>Thôn Hiển Dương, Dương Quang, Mỹ Hào, Hưng Yên</p>
-    <a class="venue__directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=20.9388189%2C106.1072559" target="_blank" rel="noopener noreferrer">
-      Chỉ đường trên Google Maps <span aria-hidden="true">↗</span>
-    </a>
-  </div>
-  <iframe class="venue__map"
-    title="Bản đồ Google Maps đến nhà chú rể"
-    src="https://www.google.com/maps?q=20.9388189%2C106.1072559&amp;z=16&amp;output=embed"
-    loading="lazy" referrerpolicy="no-referrer" allowfullscreen></iframe>
-</section>
-<section class="story"><div class="story__copy reveal"><p class="eyebrow">CHUYỆN CỦA CHÚNG MÌNH</p><h2>Từ hôm nay,<br>mình gọi nhau là nhà.</h2><p>Sau những ngày cùng nhau đi qua bình thường và rực rỡ, chúng mình chọn một ngày đẹp để bắt đầu chương mới.</p></div><img class="reveal" src="assets/images/holding-hands.png" alt="Cô dâu và chú rể nắm tay nhau"></section>
-<section class="promise"><blockquote class="reveal">“Có những cuộc gặp gỡ khiến mọi ngày sau đó đều trở nên <i>đáng nhớ.</i>”</blockquote><div class="promise__detail reveal"><p>Chúng mình rất mong được đón bạn đến chung vui, cùng chứng kiến khoảnh khắc hai gia đình trở thành một.</p></div></section>
-
-<section class="story-chapter" aria-label="Lời hẹn của chúng mình">
-  <div class="chapter-scene">
-    <img src="assets/images/holding-hands.png" alt="Ảnh minh họa đôi tay cô dâu và chú rể" loading="lazy" width="1536" height="1024">
-    <div class="chapter-words"><p class="story-eyebrow">CHUYỆN HAI CHÚNG MÌNH</p><h2 class="reveal">Một cuộc gặp, một hành trình.</h2><p class="reveal">Chúng mình mong những ngày phía trước sẽ luôn có một người để cùng trở về.</p></div>
-  </div>
-</section>
-<section class="story-vows" aria-labelledby="vow-title">
-  <header class="reveal"><p class="story-eyebrow">MỘT CHƯƠNG MỚI</p><h2 id="vow-title">Từ những điều bình dị</h2></header>
-  <div class="vow-pair">
-    <article class="reveal"><span class="vow-initial" aria-hidden="true">T</span><h3>Thùy Trang</h3><p>Mong có một người cùng chia sẻ niềm vui, cùng lắng nghe những chuyện nhỏ và cùng yêu thương gia đình.</p></article>
-    <article class="reveal"><span class="vow-initial" aria-hidden="true">H</span><h3>Quốc Hảo</h3><p>Mong được nắm tay nhau qua những ngày bình thường, cùng chăm sóc một mái nhà và gìn giữ lời hẹn hôm nay.</p></article>
-  </div>
-</section>
-<section class="story-journey" aria-labelledby="journey-title">
-  <header class="reveal"><h2 id="journey-title">Những điều mình cùng chọn.</h2><p>Một lời hẹn được xây nên từ những điều nhỏ bé.</p></header>
-  <div class="journey-track">
-    <article class="reveal"><span aria-hidden="true">01</span><h3>Lắng nghe</h3><p>Dành thời gian cho nhau, cả những điều chưa kịp nói.</p></article>
-    <article class="reveal"><span aria-hidden="true">02</span><h3>Đồng hành</h3><p>Cùng đi qua thay đổi và tìm niềm vui trong mỗi ngày.</p></article>
-    <article class="reveal"><span aria-hidden="true">03</span><h3>Về chung một nhà</h3><p>Mang theo yêu thương của hai gia đình để bắt đầu hành trình mới.</p></article>
-  </div>
-</section>
-<section class="story-album" aria-labelledby="album-title">
-  <header class="reveal"><p class="story-eyebrow">ALBUM NGÀY VUI</p><h2 id="album-title">Giữ lại những dịu dàng.</h2><p>Chạm vào ảnh để ngắm gần hơn. Ảnh hiện tại là ảnh minh họa.</p></header>
-  <div class="album-grid">
-    <button class="album-photo reveal" type="button" data-photo="assets/images/couple-garden.png" aria-label="Mở ảnh chân dung đôi uyên ương"><img src="assets/images/couple-garden.png" alt="Đôi uyên ương giữa khu vườn" loading="lazy" width="1024" height="1536"><span>Hai người, một lời hẹn</span></button>
-    <button class="album-photo reveal" type="button" data-photo="assets/images/holding-hands.png" aria-label="Mở ảnh đôi tay"><img src="assets/images/holding-hands.png" alt="Một cái nắm tay dịu dàng" loading="lazy" width="1536" height="1024"><span>Cùng nhau đi tiếp</span></button>
-    <button class="album-photo reveal" type="button" data-photo="assets/images/reception.png" aria-label="Mở ảnh bàn tiệc"><img src="assets/images/reception.png" alt="Không gian bàn tiệc đón khách" loading="lazy" width="1774" height="887"><span>Chờ bạn đến chung vui</span></button>
-  </div>
-</section>
-<section class="story-finale"><p class="story-eyebrow reveal">QUỐC HẢO &amp; THÙY TRANG</p><h2 class="reveal">Một lời hẹn giữa vườn xanh.</h2><p class="reveal">Sự hiện diện của quý vị là niềm vinh hạnh cho gia đình chúng tôi!</p><button class="rsvp-trigger reveal" type="button">Gửi lời hồi đáp</button></section></main>
-<footer class="invitation-footer">QUỐC HẢO &amp; THÙY TRANG · <a href="#">Về đầu trang</a></footer>
-<dialog class="rsvp-dialog"><form class="rsvp-card"><button class="rsvp-close" type="button">Đóng</button><p class="eyebrow">HẸN GẶP BẠN</p><h2>Bạn sẽ đến chứ?</h2><p>Đây là bản xem thử. Lời hồi đáp chưa được gửi đến gia đình.</p><label>Họ và tên<input name="name" required placeholder="Tên của bạn"></label><label>Số người tham dự<select name="guests"><option>1 khách</option><option>2 khách</option><option>3 khách</option><option>4 khách</option></select></label><button class="rsvp-card__submit" type="submit">Gửi lời xác nhận</button><p class="rsvp-status" role="status"></p></form></dialog><script src="assets/invitation.js"></script>
-</body></html>
+      <section class="story-chapter" aria-label="Lời hẹn của chúng mình">
+        <div class="chapter-scene">
+          <img
+            src="assets/images/holding-hands.webp"
+            alt="Ảnh minh họa đôi tay cô dâu và chú rể"
+            loading="lazy"
+            width="1536"
+            height="1024"
+          />
+          <div class="chapter-words">
+            <p class="story-eyebrow">CHUYỆN HAI CHÚNG MÌNH</p>
+            <h2 class="reveal">Một cuộc gặp, một hành trình.</h2>
+            <p class="reveal">
+              Chúng mình mong những ngày phía trước sẽ luôn có một người để cùng
+              trở về.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="story-vows" aria-labelledby="vow-title">
+        <header class="reveal">
+          <p class="story-eyebrow">MỘT CHƯƠNG MỚI</p>
+          <h2 id="vow-title">Từ những điều bình dị</h2>
+        </header>
+        <div class="vow-pair">
+          <article class="reveal">
+            <span class="vow-initial" aria-hidden="true">T</span>
+            <h3>Thùy Trang</h3>
+            <p>
+              Mong có một người cùng chia sẻ niềm vui, cùng lắng nghe những
+              chuyện nhỏ và cùng yêu thương gia đình.
+            </p>
+          </article>
+          <article class="reveal">
+            <span class="vow-initial" aria-hidden="true">H</span>
+            <h3>Quốc Hảo</h3>
+            <p>
+              Mong được nắm tay nhau qua những ngày bình thường, cùng chăm sóc
+              một mái nhà và gìn giữ lời hẹn hôm nay.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="story-journey" aria-labelledby="journey-title">
+        <header class="reveal">
+          <h2 id="journey-title">Những điều mình cùng chọn.</h2>
+          <p>Một lời hẹn được xây nên từ những điều nhỏ bé.</p>
+        </header>
+        <div class="journey-track">
+          <article class="reveal">
+            <span aria-hidden="true">01</span>
+            <h3>Lắng nghe</h3>
+            <p>Dành thời gian cho nhau, cả những điều chưa kịp nói.</p>
+          </article>
+          <article class="reveal">
+            <span aria-hidden="true">02</span>
+            <h3>Đồng hành</h3>
+            <p>Cùng đi qua thay đổi và tìm niềm vui trong mỗi ngày.</p>
+          </article>
+          <article class="reveal">
+            <span aria-hidden="true">03</span>
+            <h3>Về chung một nhà</h3>
+            <p>
+              Mang theo yêu thương của hai gia đình để bắt đầu hành trình mới.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="story-album" aria-labelledby="album-title">
+        <header class="reveal">
+          <p class="story-eyebrow">ALBUM NGÀY VUI</p>
+          <h2 id="album-title">Giữ lại những dịu dàng.</h2>
+          <p>Chạm vào ảnh để ngắm gần hơn. Ảnh hiện tại là ảnh minh họa.</p>
+        </header>
+        <div class="album-grid">
+          <button
+            class="album-photo reveal"
+            type="button"
+            data-photo="assets/images/couple-garden.webp"
+            aria-label="Mở ảnh chân dung đôi uyên ương"
+          >
+            <img
+              src="assets/images/couple-garden.webp"
+              alt="Đôi uyên ương giữa khu vườn"
+              loading="lazy"
+              width="1024"
+              height="1536"
+            /><span>Hai người, một lời hẹn</span>
+          </button>
+          <button
+            class="album-photo reveal"
+            type="button"
+            data-photo="assets/images/holding-hands.webp"
+            aria-label="Mở ảnh đôi tay"
+          >
+            <img
+              src="assets/images/holding-hands.webp"
+              alt="Một cái nắm tay dịu dàng"
+              loading="lazy"
+              width="1536"
+              height="1024"
+            /><span>Cùng nhau đi tiếp</span>
+          </button>
+          <button
+            class="album-photo reveal"
+            type="button"
+            data-photo="assets/images/reception.webp"
+            aria-label="Mở ảnh bàn tiệc"
+          >
+            <img
+              src="assets/images/reception.webp"
+              alt="Không gian bàn tiệc đón khách"
+              loading="lazy"
+              width="1774"
+              height="887"
+            /><span>Chờ bạn đến chung vui</span>
+          </button>
+        </div>
+      </section>
+      <section class="story-finale" aria-label="Lời cảm ơn của hai gia đình">
+        <p class="story-eyebrow reveal">QUỐC HẢO &amp; THÙY TRANG</p>
+        <h2 class="reveal">Một lời hẹn giữa vườn xanh.</h2>
+        <p class="reveal">
+          Hai gia đình chân thành cảm ơn.<br />Sự hiện diện của quý vị là niềm
+          vinh hạnh cho gia đình chúng tôi.
+        </p>
+        <button class="rsvp-trigger reveal" type="button">
+          Gửi lời hồi đáp
+        </button>
+      </section>
+    </main>
+    <footer class="invitation-footer">
+      QUỐC HẢO &amp; THÙY TRANG · <a href="#">Về đầu trang</a>
+    </footer>
+    <dialog
+      class="rsvp-dialog"
+      aria-labelledby="rsvp-title"
+      aria-describedby="rsvp-demo"
+    >
+      <form class="rsvp-card">
+        <button class="rsvp-close" type="button">Đóng</button>
+        <p class="eyebrow">HẸN GẶP BẠN</p>
+        <h2 id="rsvp-title">Bạn sẽ đến chứ?</h2>
+        <p id="rsvp-demo">
+          Đây là bản xem thử. Lời hồi đáp chưa được gửi đến gia đình.
+        </p>
+        <label
+          >Họ và tên<input
+            name="name"
+            required
+            placeholder="Tên của bạn" /></label
+        ><label
+          >Số người tham dự<select name="guests">
+            <option>1 khách</option>
+            <option>2 khách</option>
+            <option>3 khách</option>
+            <option>4 khách</option>
+          </select></label
+        ><button class="rsvp-card__submit" type="submit">
+          Xem thử lời xác nhận
+        </button>
+        <p class="rsvp-status" role="status"></p>
+      </form>
+    </dialog>
+    <script src="assets/invitation.js"></script>
+  </body>
+</html>
