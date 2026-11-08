@@ -10,6 +10,35 @@
   let heroTimer;
   let releaseTimer;
   let revealObserver;
+  let previousScrollRestoration;
+  let deferredHash = "";
+
+  function restoreNavigationDefaults() {
+    if (previousScrollRestoration !== undefined)
+      history.scrollRestoration = previousScrollRestoration;
+    // replaceState restores the shared URL without navigating to its fragment.
+    // A link chosen by the guest after opening takes precedence.
+    if (deferredHash && !location.hash)
+      history.replaceState(
+        history.state,
+        "",
+        location.pathname + location.search + deferredHash,
+      );
+    deferredHash = "";
+  }
+  function prepareOpeningViewport() {
+    previousScrollRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+    deferredHash = location.hash;
+    if (deferredHash)
+      history.replaceState(
+        history.state,
+        "",
+        location.pathname + location.search,
+      );
+    document.documentElement.classList.add("invitation-locked");
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
 
   function revealAll() {
     document
@@ -33,6 +62,17 @@
         .forEach((element) => revealObserver.observe(element));
     else revealAll();
     document.querySelector("#hero-title")?.focus({ preventScroll: true });
+    // Cancel restored positions and pending smooth anchor scrolling before the
+    // envelope disappears. This runs once; guest scrolling is never intercepted.
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.classList.remove("invitation-locked");
+    if (document.readyState === "complete") restoreNavigationDefaults();
+    else
+      window.addEventListener(
+        "load",
+        () => requestAnimationFrame(restoreNavigationDefaults),
+        { once: true },
+      );
     if (!motion.matches && body.dataset.particles === "true") celebrate();
   }
   function openInvitation() {
@@ -65,6 +105,7 @@
   function recoverInvitation() {
     body.classList.remove("motion-ready", "gate-active");
     finishOpening();
+    document.documentElement.classList.remove("invitation-locked");
     revealAll();
   }
   window.addEventListener("error", recoverInvitation);
@@ -95,7 +136,7 @@
     photoDialog.className = "photo-dialog";
     photoDialog.setAttribute("aria-label", "Ảnh cưới Quốc Hảo và Thùy Trang");
     photoDialog.innerHTML =
-      '<button type="button" class="photo-close" autofocus>Đóng ảnh ×</button><img alt="">' +
+      '<button type="button" class="photo-close">Đóng ảnh ×</button><img alt="">' +
       '<div class="photo-caption"><button type="button" class="photo-nav photo-prev" aria-label="Ảnh trước">←</button><p aria-live="polite"></p>' +
       '<button type="button" class="photo-nav photo-next" aria-label="Ảnh tiếp theo">→</button></div><p class="photo-counter" aria-live="polite"></p>';
     body.append(photoDialog);
@@ -117,6 +158,9 @@
         photoOpener = button;
         showPhoto(index);
         photoDialog.showModal();
+        photoDialog
+          .querySelector(".photo-close")
+          .focus({ preventScroll: true });
       }),
     );
     photoDialog
@@ -204,12 +248,17 @@
     });
     // Activate only after handlers and recovery paths exist. Without JS content stays visible.
     if (gate && openButton) {
+      prepareOpeningViewport();
       gate.setAttribute("aria-modal", "true");
       main.inert = true;
       if (footer) footer.inert = true;
       body.classList.add("gate-active", "motion-ready");
       body.dataset.invitationState = state;
       openButton.focus({ preventScroll: true });
+      window.addEventListener("pageshow", () => {
+        if (state !== "open")
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      });
     } else finishOpening();
   } catch (error) {
     recoverInvitation();

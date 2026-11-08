@@ -22,6 +22,10 @@ Trang chính vẫn là HTML/CSS/JavaScript thuần, không framework, không bư
 
 Mở bằng chuột, chạm, Enter hoặc Space. Trong chuyển cảnh, nút bị vô hiệu hóa để tránh mở hai lần. Sau chuyển cảnh, lớp phong bì được xóa khỏi DOM, trả focus về tiêu đề và giải phóng cuộn trang mà không tự cuộn. Timer giải phóng chạy độc lập với CSS animation. Nếu JavaScript không chạy, toàn bộ nội dung vẫn hiển thị; khi runtime gặp lỗi, trang cũng mở nội dung. `prefers-reduced-motion` bỏ qua chuyển cảnh và cánh hoa.
 
+Khi phong bì đang đóng, trang giữ ở vị trí đầu và tạm ngăn trình duyệt khôi phục vị trí cuộn cũ. Fragment có sẵn trong đường dẫn (ví dụ `#album-title`) được hoãn và khôi phục bằng `replaceState`, không cuộn tới album khi mở. Vì vậy reload sau khi đã cuộn xuống cuối vẫn bắt đầu ở hero. Các liên kết và thao tác cuộn của khách sau khi mở vẫn hoạt động bình thường; trang đã mở được khôi phục từ BFCache không bị ép quay lại đầu. Việc tải ảnh chậm cũng không kích hoạt lại cuộn theo fragment.
+
+Website: [mumeilevina.github.io/thiepcuoi](https://mumeilevina.github.io/thiepcuoi/). GitHub Pages phục vụ từ `main`, thư mục `/`, bật HTTPS.
+
 Trang dùng ảnh cưới thật ở hai kích thước WebP (699px và 420px), có `srcset`/`sizes` cho ảnh trong nội dung, khai báo kích thước 699×1048 và lazy-load bên dưới màn hình đầu. Không chỉnh khuôn mặt hoặc thay màu ảnh. Các tài nguyên minh họa cũ được giữ để đối chiếu, nhưng không còn dùng trong thiệp. Các lớp trang trí không nhận pointer events; bản đồ và phần tử cha không có transform.
 
 | Ảnh gia đình cung cấp | Vị trí                                    |

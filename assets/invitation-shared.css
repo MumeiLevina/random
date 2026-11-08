@@ -18,6 +18,11 @@
 html {
   scroll-behavior: smooth;
 }
+html.invitation-locked {
+  overflow: hidden;
+  overflow-anchor: none;
+  scroll-behavior: auto;
+}
 body {
   margin: 0;
   min-width: 280px;
@@ -26,6 +31,9 @@ body {
   color: var(--green);
 }
 body.gate-active {
+  position: fixed;
+  inset: 0;
+  width: 100%;
   overflow: hidden;
 }
 a {

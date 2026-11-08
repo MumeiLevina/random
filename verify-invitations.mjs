@@ -24,11 +24,16 @@ let rsvpMock = { success: "true", message: "Success" };
 let rsvpDelay = 180;
 const rsvpRequests = [];
 const localRequests = new Set();
+const heldImages = [];
 socket.addEventListener("message", (event) => {
   const message = JSON.parse(event.data);
   if (message.id) return pending.get(message.id)?.(message);
   const p = message.params;
   if (message.method === "Fetch.requestPaused") {
+    if (p.request.url.startsWith("file:")) {
+      heldImages.push(p.requestId);
+      return;
+    }
     const responseHeaders = [
       { name: "Access-Control-Allow-Origin", value: "*" },
       { name: "Access-Control-Allow-Methods", value: "POST, OPTIONS" },
@@ -89,7 +94,7 @@ function send(method, params = {}) {
       clearTimeout(timeout);
       pending.delete(id);
       message.error
-        ? reject(new Error(JSON.stringify(message.error)))
+        ? reject(new Error(method + ": " + JSON.stringify(message.error)))
         : resolve(message.result);
     });
     socket.send(JSON.stringify({ id, method, params }));
@@ -109,7 +114,18 @@ async function evaluate(expression) {
 async function until(expression, label, timeout = 6000) {
   const start = Date.now();
   while (Date.now() - start < timeout) {
-    if (await evaluate(expression)) return;
+    try {
+      if (await evaluate(expression)) return;
+    } catch (error) {
+      // Back/forward cache can briefly detach the old renderer while CDP
+      // switches execution contexts. This is not an application exception.
+      if (
+        !/Not attached to an active page|Cannot find context|Execution context was destroyed/.test(
+          error.message,
+        )
+      )
+        throw error;
+    }
     await delay(75);
   }
   throw new Error("Timeout: " + label);
@@ -358,7 +374,11 @@ try {
       await evaluate(
         `document.querySelectorAll('.reveal')[${index}].scrollIntoView({behavior:'instant',block:'center'})`,
       );
-      await delay(60);
+      await until(
+        `document.querySelectorAll('.reveal')[${index}].classList.contains('is-visible')`,
+        "Reveal at " + label + " #" + index,
+        2500,
+      );
     }
     await delay(1250);
     assert.ok(
@@ -488,6 +508,138 @@ try {
         " · opening, duplicate input, focus, layout, data, map, reveal, album, RSVP, reload",
     );
   }
+  for (const width of [390, 1440]) {
+    await metrics(width, 844);
+    const fragmentUrl =
+      pageUrl + "?scroll-regression=" + width + "#album-title";
+    await navigate(fragmentUrl, { destination: fragmentUrl.split("#")[0] });
+    assert.equal(
+      await evaluate("scrollY"),
+      0,
+      "Anchor cannot scroll behind the envelope",
+    );
+    await evaluate(`document.querySelector('[data-open-invitation]').click()`);
+    await until(
+      `document.body.dataset.invitationState==='open'`,
+      "fragment opening",
+    );
+    await delay(300);
+    assert.ok(
+      await evaluate(
+        `scrollY===0 && location.hash==='#album-title' && !document.documentElement.classList.contains('invitation-locked') && getComputedStyle(document.body).position!=='fixed'`,
+      ),
+      "Hero stays at top, fragment is preserved without navigation",
+    );
+    await evaluate(`document.querySelector('a[href="#nha-chu-re"]').click()`);
+    await until("scrollY>100", "Guest anchor navigation still works");
+    await evaluate(
+      `scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})`,
+    );
+    await delay(150);
+    assert.ok(await evaluate("scrollY>1000"), "Guest can scroll to finale");
+    await send("Page.reload");
+    await until(
+      `document.body?.dataset.invitationState==='closed'`,
+      "reload closed",
+    );
+    assert.equal(
+      await evaluate("scrollY"),
+      0,
+      "Reload suppresses saved bottom position",
+    );
+    await evaluate(`document.querySelector('[data-open-invitation]').click()`);
+    await until(
+      `document.body.dataset.invitationState==='open'`,
+      "reload opening",
+    );
+    await delay(300);
+    assert.equal(
+      await evaluate("scrollY"),
+      0,
+      "Opening after a bottom-of-page reload stays at hero",
+    );
+    await evaluate(`scrollTo({top:1200,behavior:'instant'})`);
+    await delay(100);
+    const returnY = await evaluate("scrollY");
+    await send("Page.navigate", { url: "about:blank" });
+    await until(
+      `location.href==='about:blank' && document.readyState==='complete'`,
+      "history navigation committed",
+    );
+    const navigation = await send("Page.getNavigationHistory");
+    await send("Page.navigateToHistoryEntry", {
+      entryId: navigation.entries[navigation.currentIndex - 1].id,
+    });
+    await until(
+      `document.body?.dataset.invitationState==='open' || document.body?.dataset.invitationState==='closed'`,
+      "history back",
+    );
+    if (await evaluate(`document.body.dataset.invitationState==='closed'`)) {
+      await evaluate(
+        `document.querySelector('[data-open-invitation]').click()`,
+      );
+      await until(
+        `document.body.dataset.invitationState==='open'`,
+        "history opening",
+      );
+      assert.equal(
+        await evaluate("scrollY"),
+        0,
+        "Fresh history navigation opens at hero",
+      );
+    } else {
+      await until(
+        `Math.abs(scrollY-${returnY})<2`,
+        "BFCache scroll restoration",
+      );
+      assert.ok(
+        Math.abs((await evaluate("scrollY")) - returnY) < 2,
+        "BFCache preserves an already open invitation",
+      );
+    }
+    passed(
+      width +
+        "px · initial fragment, bottom reload, guest scrolling and history back",
+    );
+  }
+  await metrics(390, 844);
+  await send("Network.setCacheDisabled", { cacheDisabled: true });
+  await send("Fetch.enable", {
+    patterns: [
+      { urlPattern: "https://formsubmit.co/*", requestStage: "Request" },
+      { urlPattern: "file:///*nm_00004.webp", requestStage: "Request" },
+    ],
+  });
+  const lateUrl = pageUrl + "?late-image#album-title";
+  await navigate(lateUrl, { destination: lateUrl.split("#")[0] });
+  await evaluate(`document.querySelector('[data-open-invitation]').click()`);
+  await until(
+    `document.body.dataset.invitationState==='open'`,
+    "opening before image load",
+  );
+  assert.ok(heldImages.length > 0, "Hero image deliberately delayed");
+  assert.equal(
+    await evaluate("scrollY"),
+    0,
+    "Opening before load remains at top",
+  );
+  for (const requestId of heldImages.splice(0))
+    await send("Fetch.continueRequest", { requestId });
+  await until(`document.readyState==='complete'`, "late load");
+  await delay(400);
+  assert.ok(
+    await evaluate(
+      `scrollY===0 && location.hash==='#album-title' && history.scrollRestoration==='auto'`,
+    ),
+    "Late load restores URL and history defaults without jumping",
+  );
+  await send("Fetch.enable", {
+    patterns: [
+      { urlPattern: "https://formsubmit.co/*", requestStage: "Request" },
+    ],
+  });
+  await send("Network.setCacheDisabled", { cacheDisabled: false });
+  passed("Late image/window load does not reapply initial fragment scrolling");
   await metrics(390, 844);
   await navigate(pageUrl + "?rsvp-errors");
   await evaluate(

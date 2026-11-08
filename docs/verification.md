@@ -2,7 +2,7 @@
 
 Ngày kiểm tra: 08/11/2026. Trình duyệt: Chrome headless 156.0.8078.80 trên Windows. Kết quả máy đọc được: [verification-results.json](verification-results.json).
 
-Lệnh chạy: `node verify-invitations.mjs`. **16 nhóm kiểm tra đạt**, không có lỗi console/runtime/asset nội bộ. Các request bị hủy do chuyển trang được phân biệt với asset thiếu. Ảnh minh chứng đã được cập nhật với 5 ảnh cưới thật gia đình cung cấp.
+Lệnh chạy: `node verify-invitations.mjs`. **19 nhóm kiểm tra đạt**, không có lỗi console/runtime/asset nội bộ. Các request bị hủy do chuyển trang được phân biệt với asset thiếu. Ảnh minh chứng đã được cập nhật với 5 ảnh cưới thật gia đình cung cấp.
 
 | Viewport   | Kết quả            |
 | ---------- | ------------------ |
@@ -19,6 +19,8 @@ Lệnh chạy: `node verify-invitations.mjs`. **16 nhóm kiểm tra đạt**, kh
 **Kiểm thử gửi email dùng provider giả lập qua CDP**, chặn toàn bộ request FormSubmit. Không gửi thư thật trong suite. Các nhánh bổ sung: không tham dự gửi 0 người và ẩn chọn ngày, dịch vụ thất bại giữ dữ liệu và cho thử lại, email chưa kích hoạt không báo thành công, retry thành công và timeout báo chưa xác nhận được kết quả. Các screenshot trạng thái thành công dưới đây minh họa UI từ phản hồi giả lập, không phải chứng cứ email đã vào Inbox.
 
 Các nhánh bổ sung đạt: đường dẫn cũ chuyển về trang chính, reduced motion mở tức thì, CSS animation bị hủy hoặc tắt vẫn giải phóng thiệp, runtime lỗi mở nội dung, thiếu IntersectionObserver vẫn hiện toàn bộ nội dung và JavaScript bị tắt vẫn đọc được thiệp.
+
+Kiểm thử lỗi cuộn bổ sung trên 390px và 1440px: mở URL có fragment ban đầu vẫn ở hero, giữ fragment trong URL mà không điều hướng; cuộn tới cuối rồi reload/mở lại vẫn ở đầu; liên kết và cuộn do khách chủ động vẫn hoạt động; Back phục hồi trang hợp lệ. Một kiểm thử khác giữ request ảnh để trang chưa hoàn tất tải khi mở: tải xong ảnh không làm cuộn lại tới fragment, và chế độ khôi phục scroll của trình duyệt được trả về như ban đầu. Chi tiết lỗi đã tái hiện trên bản công khai nằm trong [live-verification.md](live-verification.md).
 
 Đã xem screenshot trên desktop/mobile, điều chỉnh hero mobile để tên không đè lên khuôn mặt và giữ ảnh album theo tỉ lệ dọc. Chưa kiểm chứng Safari/iOS, trình duyệt cũ, thiết bị thật, độ mượt/FPS trên điện thoại hoặc thao tác kéo/zoom trong Google Maps bằng thiết bị thật. Bản đồ đã được kiểm tra URL, kích thước và cấu trúc không chặn tương tác. Form đã kết nối endpoint email thật; kích hoạt và xác minh Inbox từ website thực tế là bước riêng, không được coi là đã đạt chỉ từ suite.
 
