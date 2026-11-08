@@ -1,0 +1,96 @@
+@font-face {
+  font-family: "HLT AphroditeSlimPro";
+  src: url("fonts/HLT-AphroditeSlimPro.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  --name-font: "HLT AphroditeSlimPro", "Newsreader", Georgia, serif;
+}
+.couple-name,
+.couple-connector,
+.wedding-schedule__families p,
+.vow-pair h3,
+.couple-signature {
+  font-family: var(--name-font);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  letter-spacing: 0;
+  font-feature-settings:
+    "liga" 1,
+    "clig" 1,
+    "calt" 1;
+}
+.couple-title {
+  letter-spacing: 0;
+}
+.couple-name {
+  line-height: 1.85;
+}
+.couple-connector {
+  line-height: 1.5;
+}
+.hero .couple-title {
+  gap: 0;
+}
+.envelope__front .couple-title {
+  font-size: clamp(1.1rem, 4.8vw, 2.4rem);
+  letter-spacing: 0;
+  gap: 0.2em;
+  margin: 0.2rem 0;
+}
+.envelope__letter strong {
+  font: 400 clamp(1.1rem, 3.5vw, 2rem)/1.75 var(--name-font);
+  letter-spacing: 0;
+}
+.wedding-schedule__families p {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 2.05;
+}
+.parent-name {
+  display: inline-block;
+  white-space: nowrap;
+}
+.vow-pair h3 {
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.9;
+}
+.story-finale > p.couple-signature {
+  font-size: clamp(1.25rem, 4.5vw, 2.6rem);
+  line-height: 1.85;
+  color: var(--gold);
+}
+.invitation-footer .couple-signature {
+  display: block;
+  font-size: 1.4rem;
+  line-height: 2;
+}
+@media (max-width: 720px) {
+  .wedding-schedule__families {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .wedding-schedule__families > div {
+    padding: 1.5rem 0.75rem;
+  }
+  .wedding-schedule__families > div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .wedding-schedule__families p {
+    font-size: clamp(1.25rem, 5.8vw, 1.7rem);
+  }
+  .envelope__front {
+    padding-bottom: 0.6rem;
+  }
+}
+@media (max-height: 650px) {
+  .hero .couple-title {
+    font-size: clamp(1.7rem, 4.6vw, 2.5rem);
+    margin: 0.4rem 0;
+  }
+  .envelope__front .couple-title {
+    font-size: clamp(1.1rem, 3.6vw, 1.65rem);
+  }
+}

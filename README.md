@@ -21,6 +21,8 @@ Nếu trình duyệt chặn phát, thiệp vẫn mở bình thường, nút cho 
 
 ## Thiết kế và ảnh
 
+Tên cô dâu/chú rể và phụ huynh hai nhà sử dụng đúng **HLT AphroditeSlimPro** từ ảnh tham chiếu. Font được lưu tại `assets/fonts/HLT-AphroditeSlimPro.woff2` (~227 KB), preload và dùng `font-display: swap`; không phụ thuộc việc cài font trên máy khách. CSS riêng ở `assets/names.css`, chỉ áp dụng cho tên, không đổi font nội dung/địa chỉ/nút. Khoảng cách chữ bằng 0 và khoảng cách dòng được chỉnh cho nét lượn/dấu Việt. Trên màn hình nhỏ, hai gia đình xếp lần lượt để giữ trọn tên phụ huynh. [Nguồn và thông tin font](assets/fonts/SOURCE.md).
+
 Một mẫu Vườn Sương duy nhất: phong bì ivory/sage, dấu sáp H&T, nắp gập 3D và thiệp trượt ra, chuyển sang hero khoảng 3 giây. Có reduced motion, recovery khi animation/JavaScript lỗi, focus bàn phím, reveal, parallax nhẹ và lightbox hỗ trợ ←/→/ESC.
 
 Năm ảnh thật được dùng ở hero, câu chuyện, chương chuyển cảnh và album: NM_00004, NM_00059, NM_00107, NM_00158 và NM_01440. Có bản WebP 699px/420px, lazy loading và kích thước khai báo. Lời kể hiện có vẫn có ghi chú minh họa chờ hai bạn xác nhận.
@@ -29,7 +31,7 @@ Mở thiệp luôn ở hero, kể cả reload từ cuối hoặc URL có fragmen
 
 ## Kiểm tra
 
-Cần Node.js 22+ và một phiên Chrome kiểm thử riêng với cổng 9333, profile `.story-test-profile`. Sau khi mở phiên này, chạy `node verify-invitations.mjs`. Ví dụ PowerShell:
+Cần Node.js 22+ và một phiên Chrome kiểm thử riêng với cổng 9333, profile `.story-test-profile`. Sau khi mở phiên này, chạy `node verify-invitations.mjs`. Script tự phục vụ nội dung qua HTTP loopback rồi đóng server sau kiểm thử, để font web được tải theo đúng quy tắc origin như website thật. Ví dụ PowerShell:
 
 ```powershell
 Start-Process 'C:\Program Files\Google\Chrome\Application\chrome.exe' -WindowStyle Hidden -ArgumentList @('--headless=new', '--remote-debugging-port=9333', "--user-data-dir=$PWD\.story-test-profile", '--no-first-run', 'about:blank')

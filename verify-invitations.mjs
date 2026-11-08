@@ -1,12 +1,68 @@
 import assert from "node:assert/strict";
 import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { createServer } from "node:http";
+import { resolve, extname, sep } from "node:path";
 
 // Use a dedicated Chromium debug session (README), never the user's regular tabs.
 const endpoint = process.env.CHROME_DEBUG_URL || "http://127.0.0.1:9333";
-const pageUrl = new URL("index.html", import.meta.url).href;
-const legacyUrl = new URL("invitations/01-vuon-suong.html", import.meta.url)
-  .href;
+// Local fonts use the same HTTP origin rules as production, rather than file://.
+const root = fileURLToPath(new URL(".", import.meta.url));
+const contentTypes = {
+  ".html": "text/html; charset=utf-8",
+  ".css": "text/css; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".svg": "image/svg+xml",
+  ".webp": "image/webp",
+  ".png": "image/png",
+  ".woff2": "font/woff2",
+  ".mp3": "audio/mpeg",
+};
+const server = createServer(async (request, response) => {
+  try {
+    const path = decodeURIComponent(
+      new URL(request.url, "http://localhost").pathname,
+    );
+    if (path === "/favicon.ico") {
+      response.writeHead(302, { Location: "/assets/favicon.svg" });
+      response.end();
+      return;
+    }
+    if (
+      path !== "/index.html" &&
+      !path.startsWith("/assets/") &&
+      !path.startsWith("/invitations/")
+    ) {
+      response.writeHead(404);
+      response.end();
+      return;
+    }
+    const file = resolve(root, "." + path);
+    const allowed =
+      file === resolve(root, "index.html") ||
+      ["assets", "invitations"].some((folder) =>
+        file.startsWith(resolve(root, folder) + sep),
+      );
+    if (!allowed) {
+      response.writeHead(403);
+      response.end();
+      return;
+    }
+    const data = await readFile(file);
+    response.writeHead(200, {
+      "Content-Type": contentTypes[extname(file)] || "application/octet-stream",
+      "Cache-Control": "no-store",
+    });
+    response.end(data);
+  } catch {
+    response.writeHead(404);
+    response.end();
+  }
+});
+await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+const pageOrigin = "http://127.0.0.1:" + server.address().port;
+const pageUrl = pageOrigin + "/index.html";
+const legacyUrl = pageOrigin + "/invitations/01-vuon-suong.html";
 const artifactDir = new URL("./verification/", import.meta.url);
 await mkdir(artifactDir, { recursive: true });
 const target = await fetch(endpoint + "/json/new?about:blank", {
@@ -33,7 +89,7 @@ socket.addEventListener("message", (event) => {
   )
     musicRequests.push(p.request.url);
   if (message.method === "Fetch.requestPaused") {
-    if (p.request.url.startsWith("file:")) {
+    if (p.request.url.startsWith(pageOrigin)) {
       heldImages.push(p.requestId);
       return;
     }
@@ -48,7 +104,7 @@ socket.addEventListener("message", (event) => {
     errors.push(p.args.map((arg) => arg.value || arg.description).join(" "));
   if (
     message.method === "Network.requestWillBeSent" &&
-    p.request.url.startsWith("file:")
+    p.request.url.startsWith(pageOrigin)
   )
     localRequests.add(p.requestId);
   if (
@@ -58,7 +114,8 @@ socket.addEventListener("message", (event) => {
   )
     errors.push("Local resource: " + p.errorText);
   if (message.method === "Log.entryAdded" && p.entry.level === "error") {
-    if (p.entry.url?.startsWith("file:")) errors.push(p.entry.text);
+    if (p.entry.url?.startsWith(pageOrigin))
+      errors.push(p.entry.url + ": " + p.entry.text);
     else externalWarnings.add(p.entry.url || p.entry.text);
   }
 });
@@ -334,6 +391,12 @@ try {
         `document.fonts.check('400 20px Newsreader') && document.fonts.check('400 14px "Be Vietnam Pro"')`,
       ),
       "Vietnamese fonts loaded",
+    );
+    assert.ok(
+      await evaluate(
+        `document.fonts.check('400 24px "HLT AphroditeSlimPro"','Quốc Hảo Thùy Trang Đặng Đình Mười Nguyễn Thị Duyên Hàn Ngọc Tú Nguyễn Thị Kim Oanh') && [...document.querySelectorAll('.couple-name,.parent-name,.vow-pair h3')].every(e=>getComputedStyle(e).fontFamily.includes('HLT AphroditeSlimPro'))`,
+      ),
+      "Requested calligraphy font loaded for couple and parents",
     );
     const text = await evaluate(
       `document.querySelector('main').textContent.replace(/\\s+/g,' ').trim()`,
@@ -663,7 +726,7 @@ try {
   await send("Network.setCacheDisabled", { cacheDisabled: true });
   await send("Fetch.enable", {
     patterns: [
-      { urlPattern: "file:///*nm_00004.webp", requestStage: "Request" },
+      { urlPattern: pageOrigin + "/*nm_00004.webp", requestStage: "Request" },
     ],
   });
   const lateUrl = pageUrl + "?late-image#album-title";
@@ -785,4 +848,5 @@ try {
   );
   await fetch(endpoint + "/json/close/" + target.id).catch(() => {});
   socket.close();
+  await new Promise((resolve) => server.close(resolve));
 }

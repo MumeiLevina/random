@@ -1,5 +1,7 @@
 # Kiểm chứng Vườn Sương
 
+Font tên đã đổi sang HLT AphroditeSlimPro đúng ảnh tham chiếu. Đã kiểm tra đủ glyph tiếng Việt cho sáu tên trong file font, rồi kiểm tra font thực sự được tải và áp dụng trong trình duyệt tại 320/375/390/768/1440px, 844×390 và 375×568. Tên không chồng nhau hoặc gây tràn ngang. Đã xem ảnh phong bì, hero và phụ huynh trên desktop/mobile; hai gia đình xếp dọc ở mobile để không phải co tên quá nhỏ.
+
 Kết quả chi tiết: [verification-results.json](verification-results.json). **19 nhóm kiểm tra đạt**. Trình duyệt kiểm thử: Chromium trên Windows, 08/11/2026.
 
 Ngày 23/11 hiện chỉ hiển thị nhà gái với link bản đồ tìm theo địa chỉ Ao Hồ; mục nhà trai trùng lặp đã được bỏ. Nhà trai ngày 24/11 và bản đồ Hiển Dương gần cuối trang được giữ nguyên. Bộ kiểm thử kiểm tra ngày 23 có đúng một link và không có mục nhà trai. Tiêu đề tab, Open Graph và Twitter cùng là “Quốc Hảo ❤️ Thùy Trang - Thiệp mời cưới”.
@@ -27,3 +29,9 @@ Chưa kiểm chứng Safari/iOS hoặc thiết bị thật. Các ảnh dưới �
 ## Mobile
 
 ![Hero mobile với nút nhạc](screenshots/390-hero.webp)
+
+## Tên phụ huynh — HLT AphroditeSlimPro
+
+![Hai gia đình trên desktop](screenshots/1440-families.webp)
+
+![Tên phụ huynh trên mobile](screenshots/390-families.webp)
